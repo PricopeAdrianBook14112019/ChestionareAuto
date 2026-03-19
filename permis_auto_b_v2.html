@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#0e0f13">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Permis B — Pregătire Examen</title>
+
+<style>
+:root {
+  --bg: #0e0f13;
+  --surface: #161820;
+  --surface2: #1e2028;
+  --surface3: #252830;
+  --border: #2e3140;
+  --accent: #f5c518;
+  --accent2: #e8791a;
+  --accent3: #3ecf8e;
+  --danger: #e84040;
+  --info: #4a9eff;
+  --text: #f0f0f5;
+  --text2: #9498b0;
+  --text3: #5a5e75;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #0e0f13 0%, #1a1c26 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 16px;
+  height: 60px;
+}
+.logo {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.logo span { color: var(--text2); font-weight: 400; }
+
+.tabs {
+  display: flex; gap: 4px;
+  overflow-x: auto; scrollbar-width: none;
+  flex: 1;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab:hover { color: var(--text); background: var(--surface2); }
+.tab.active { background: var(--accent); color: #0e0f13; }
+
+/* CONTENT */
+.content { display: none; padding: 24px; max-width: 1100px; margin: 0 auto; }
+.content.active { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.card-title {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* GRID */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media(max-width:768px) { .grid-2,.grid-3 { grid-template-columns: 1fr; } }
+
+/* ===== TAB: DASHBOARD ===== */
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent);
+}
+.stat-card.green::before { background: var(--accent3); }
+.stat-card.red::before { background: var(--danger); }
+.stat-card.blue::before { background: var(--info); }
+
+.stat-num {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label { color: var(--text2); font-size: 0.82rem; }
+
+.progress-bar {
+  height: 8px;
+  background: var(--surface3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.8s ease;
+}
+
+.chapter-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-item:last-child { border-bottom: none; }
+.chapter-icon { font-size: 1.3rem; width: 32px; text-align: center; }
+.chapter-name { flex: 1; font-size: 0.88rem; }
+.chapter-score {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.chapter-score.ok { color: var(--accent3); }
+.chapter-score.warn { color: var(--accent); }
+.chapter-score.bad { color: var(--danger); }
+
+/* ===== TAB: REGULI ===== */
+.rule-section { margin-bottom: 20px; }
+.rule-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface2);
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.rule-header:hover { border-color: var(--accent); }
+.rule-header.open { border-color: var(--accent); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.rule-emoji { font-size: 1.3rem; }
+.rule-title { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; flex: 1; }
+.rule-count { color: var(--text3); font-size: 0.8rem; }
+.rule-chevron { color: var(--text3); transition: transform 0.3s; }
+.rule-header.open .rule-chevron { transform: rotate(180deg); }
+
+.rule-body {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 16px;
+}
+.rule-body.open { display: block; }
+
+.rule-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: var(--surface2);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+.rule-item.danger { border-left-color: var(--danger); }
+.rule-item.info { border-left-color: var(--info); }
+.rule-item.green { border-left-color: var(--accent3); }
+.rule-item h4 { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+.rule-item p { color: var(--text2); font-size: 0.84rem; line-height: 1.6; }
+.rule-item .highlight {
+  display: inline-block;
+  background: var(--accent);
+  color: #0e0f13;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 1px 7px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.rule-item .highlight.red { background: var(--danger); color: #fff; }
+.rule-item .highlight.green { background: var(--accent3); color: #0e0f13; }
+.rule-item .highlight.blue { background: var(--info); color: #fff; }
+
+/* ===== TAB: SEMNE ===== */
+.signs-filter {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 600;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--accent); color: #0e0f13; border-color: var(--accent); }
+
+.signs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+.sign-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sign-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.sign-svg { width: 60px; height: 60px; margin: 0 auto 8px; display: block; }
+.sign-name { font-size: 0.74rem; color: var(--text2); line-height: 1.3; }
+.sign-code { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.7rem; color: var(--text3); margin-bottom: 3px; }
+
+/* Modal semn */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 200;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 12px; right: 16px;
+  background: none; border: none; color: var(--text3);
+  font-size: 1.4rem; cursor: pointer;
+}
+.modal-sign-svg { width: 100px; height: 100px; margin: 0 auto 16px; display: block; }
+.modal h3 { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; }
+.modal p { color: var(--text2); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px; }
+.modal .tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.tag-danger { background: rgba(232,64,64,0.2); color: var(--danger); }
+.tag-warning { background: rgba(245,197,24,0.2); color: var(--accent); }
+.tag-info { background: rgba(74,158,255,0.2); color: var(--info); }
+.tag-ok { background: rgba(62,207,142,0.2); color: var(--accent3); }
+
+/* ===== TAB: CHESTIONAR ===== */
+.quiz-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.quiz-filter {
+  display: flex; gap: 8px; flex-wrap: wrap; flex: 1;
+}
+.q-num {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--text2);
+  white-space: nowrap;
+}
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.q-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.q-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.q-image {
+  width: 100%; max-width: 340px;
+  height: 180px;
+  background: var(--surface2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.q-options { display: flex; flex-direction: column; gap: 10px; }
+.q-option {
+  padding: 12px 16px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.q-option:hover:not(.answered) { border-color: var(--accent); }
+.q-option.correct { border-color: var(--accent3); background: rgba(62,207,142,0.1); }
+.q-option.wrong { border-color: var(--danger); background: rgba(232,64,64,0.1); }
+.q-option-letter {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text3);
+  width: 20px; flex-shrink: 0;
+  margin-top: 1px;
+}
+.q-option.correct .q-option-letter { color: var(--accent3); }
+.q-option.wrong .q-option-letter { color: var(--danger); }
+
+.q-explanation {
+  display: none;
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(245,197,24,0.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.86rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.q-explanation.show { display: block; }
+.q-explanation strong { color: var(--accent); }
+
+.q-nav {
+  display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--accent); color: #0e0f13; }
+.btn-primary:hover { background: #f0b800; }
+.btn-secondary { background: var(--surface3); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--accent); }
+.btn-danger { background: var(--danger); color: #fff; }
+
+/* ===== TAB: SITUATII ===== */
+.situation-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.sit-title {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.intersection-svg {
+  display: block; margin: 0 auto 16px;
+  max-width: 300px;
+}
+.sit-question { font-size: 0.92rem; margin-bottom: 12px; font-weight: 500; }
+.sit-options { display: flex; flex-direction: column; gap: 8px; }
+.sit-opt {
+  padding: 10px 14px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.87rem;
+  transition: all 0.2s;
+}
+.sit-opt:hover:not(.answered) { border-color: var(--info); }
+.sit-opt.correct { border-color: var(--accent3); background: rgba(62,207,142,0.1); }
+.sit-opt.wrong { border-color: var(--danger); background: rgba(232,64,64,0.1); }
+.sit-explanation {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(74,158,255,0.08);
+  border-left: 3px solid var(--info);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.84rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.sit-explanation.show { display: block; }
+
+/* ===== TAB: EXAMEN ===== */
+.exam-start {
+  text-align: center;
+  padding: 60px 20px;
+}
+.exam-start h2 {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.exam-start p { color: var(--text2); font-size: 0.9rem; margin-bottom: 8px; }
+.exam-rules {
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 24px auto;
+  max-width: 420px;
+  text-align: left;
+}
+.exam-rules li {
+  font-size: 0.88rem;
+  color: var(--text2);
+  margin-bottom: 8px;
+  padding-left: 12px;
+  border-left: 2px solid var(--accent);
+  list-style: none;
+}
+.exam-active { display: none; }
+.exam-active.show { display: block; }
+.exam-start-view { display: block; }
+.exam-start-view.hide { display: none !important; }
+
+.exam-top {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.exam-timer {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--accent);
+  background: var(--surface2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  min-width: 80px; text-align: center;
+}
+.exam-timer.urgent { color: var(--danger); border-color: var(--danger); animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.exam-progress-text {
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--text2);
+}
+.exam-dots {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.exam-dot {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 0.65rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--text3);
+}
+.exam-dot.answered { background: var(--info); border-color: var(--info); color: #fff; }
+.exam-dot.current { background: var(--accent); border-color: var(--accent); color: #0e0f13; }
+.exam-dot.correct-f { background: var(--accent3); border-color: var(--accent3); color: #0e0f13; }
+.exam-dot.wrong-f { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+.exam-result {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.exam-result.show { display: block; }
+.result-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+}
+.result-circle.pass { background: rgba(62,207,142,0.2); border: 4px solid var(--accent3); color: var(--accent3); }
+.result-circle.fail { background: rgba(232,64,64,0.2); border: 4px solid var(--danger); color: var(--danger); }
+.result-title { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 8px; }
+.result-sub { color: var(--text2); font-size: 0.9rem; margin-bottom: 24px; }
+
+/* ===== JURNAL ===== */
+.journal-input { margin-bottom: 20px; }
+.journal-input textarea {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text);
+  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  font-size: 0.9rem;
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 10px;
+}
+.journal-input textarea:focus { outline: none; border-color: var(--accent); }
+.journal-entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-left: 3px solid var(--accent);
+}
+.journal-entry.studiu { border-left-color: var(--info); }
+.journal-entry.gresit { border-left-color: var(--danger); }
+.journal-entry.invatat { border-left-color: var(--accent3); }
+.entry-meta { font-size: 0.75rem; color: var(--text3); margin-bottom: 6px; display: flex; gap: 8px; }
+.entry-type-badge {
+  padding: 1px 8px; border-radius: 10px;
+  font-size: 0.72rem; font-weight: 600; font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+}
+.badge-studiu { background: rgba(74,158,255,0.2); color: var(--info); }
+.badge-gresit { background: rgba(232,64,64,0.2); color: var(--danger); }
+.badge-invatat { background: rgba(62,207,142,0.2); color: var(--accent3); }
+.badge-nota { background: rgba(245,197,24,0.2); color: var(--accent); }
+.entry-text { font-size: 0.88rem; line-height: 1.5; }
+.entry-delete { float: right; background: none; border: none; color: var(--text3); cursor: pointer; font-size: 1rem; }
+
+select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 12px;
+  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+select:focus { outline: none; border-color: var(--accent); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">🚗 Permis<span> Cat. B</span></div>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('dashboard')">📊 Progres</button>
+    <button class="tab" onclick="showTab('reguli')">📖 Reguli</button>
+    <button class="tab" onclick="showTab('semne')">🔺 Semne</button>
+    <button class="tab" onclick="showTab('chestionar')">❓ Chestionar</button>
+    <button class="tab" onclick="showTab('situatii')">🚦 Situații</button>
+    <button class="tab" onclick="showTab('examen')">🎯 Examen</button>
+    <button class="tab" onclick="showTab('jurnal')">📝 Jurnal</button>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="tab-dashboard" class="content active">
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="stat-card">
+      <div class="stat-num" id="stat-total">0</div>
+      <div class="stat-label">Întrebări rezolvate</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-num" id="stat-correct" style="color:var(--accent3)">0</div>
+      <div class="stat-label">Răspunsuri corecte</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-num" id="stat-wrong" style="color:var(--danger)">0</div>
+      <div class="stat-label">Răspunsuri greșite</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">📈 Progres general</div>
+      <div style="display:flex;justify-content:space-between;font-size:0.83rem;margin-bottom:4px">
+        <span>Rată succes</span>
+        <span id="stat-rate" style="font-family:'Syne',sans-serif;font-weight:700;color:var(--accent)">—</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+      <div style="font-size:0.8rem;color:var(--text3);margin-top:6px">Minim admis la examen: <strong style="color:var(--accent)">22/26 (84.6%)</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏆 Simulări examen</div>
+      <div id="exam-history" style="color:var(--text3);font-size:0.85rem">Nicio simulare efectuată încă.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📚 Progres pe capitole</div>
+    <div id="chapter-progress">
+      <div class="chapter-item">
+        <div class="chapter-icon">⚡</div>
+        <div class="chapter-name">Prioritate de trecere</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-1"></div></div>
+        <div class="chapter-score warn" id="cs-1">—</div>
+      </div>
+      <div class="chapter-item">
+        <div class="chapter-icon">🚀</div>
+        <div class="chapter-name">Viteză și distanță</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-2"></div></div>
+        <div class="chapter-score warn" id="cs-2">—</div>
+      </div>
+      <div class="chapter-item">
+        <div class="chapter-icon">↪️</div>
+        <div class="chapter-name">Depășire și overtaking</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-3"></div></div>
+        <div class="chapter-score warn" id="cs-3">—</div>
+      </div>
+      <div class="chapter-item">
+        <div class="chapter-icon">🍺</div>
+        <div class="chapter-name">Alcool și droguri</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-4"></div></div>
+        <div class="chapter-score warn" id="cs-4">—</div>
+      </div>
+      <div class="chapter-item">
+        <div class="chapter-icon">🔴</div>
+        <div class="chapter-name">Semne și semnalizare</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-5"></div></div>
+        <div class="chapter-score warn" id="cs-5">—</div>
+      </div>
+      <div class="chapter-item">
+        <div class="chapter-icon">🅿️</div>
+        <div class="chapter-name">Staționare și parcare</div>
+        <div class="progress-bar" style="flex:1;margin:0 10px"><div class="progress-fill" style="width:0%" id="cp-6"></div></div>
+        <div class="chapter-score warn" id="cs-6">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGULI ============ -->
+<div id="tab-reguli" class="content">
+  <div id="reguli-list"></div>
+</div>
+
+<!-- ============ SEMNE ============ -->
+<div id="tab-semne" class="content">
+  <div class="signs-filter">
+    <button class="filter-btn active" onclick="filterSigns('all',this)">Toate</button>
+    <button class="filter-btn" onclick="filterSigns('pericol',this)">⚠️ Pericol</button>
+    <button class="filter-btn" onclick="filterSigns('prioritate',this)">🔷 Prioritate</button>
+    <button class="filter-btn" onclick="filterSigns('interzicere',this)">🚫 Interzicere</button>
+    <button class="filter-btn" onclick="filterSigns('obligare',this)">🔵 Obligare</button>
+    <button class="filter-btn" onclick="filterSigns('informare',this)">🟦 Informare</button>
+  </div>
+  <div class="signs-grid" id="signs-grid"></div>
+</div>
+<div class="modal-overlay" id="sign-modal" onclick="closeSignModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-sign-img"></div>
+    <div id="modal-sign-code" style="font-family:'Syne',sans-serif;font-size:0.8rem;color:var(--text3);margin-bottom:6px"></div>
+    <h3 id="modal-sign-name"></h3>
+    <p id="modal-sign-desc"></p>
+    <div id="modal-sign-tags"></div>
+  </div>
+</div>
+
+<!-- ============ CHESTIONAR ============ -->
+<div id="tab-chestionar" class="content">
+  <div class="quiz-header">
+    <div class="quiz-filter">
+      <button class="filter-btn active" onclick="filterQuiz('all',this)">Toate</button>
+      <button class="filter-btn" onclick="filterQuiz('prioritate',this)">Prioritate</button>
+      <button class="filter-btn" onclick="filterQuiz('viteza',this)">Viteză</button>
+      <button class="filter-btn" onclick="filterQuiz('depasire',this)">Depășire</button>
+      <button class="filter-btn" onclick="filterQuiz('alcool',this)">Alcool</button>
+      <button class="filter-btn" onclick="filterQuiz('semne',this)">Semne</button>
+    </div>
+    <div class="q-num" id="quiz-counter">Întrebarea 1/20</div>
+  </div>
+  <div id="quiz-container"></div>
+  <div class="q-nav">
+    <button class="btn btn-secondary" onclick="prevQuestion()">← Anterior</button>
+    <button class="btn btn-secondary" onclick="nextQuestion()">Următor →</button>
+    <button class="btn btn-primary" onclick="shuffleQuestions()">🔀 Amestecă</button>
+  </div>
+</div>
+
+<!-- ============ SITUATII RUTIERE ============ -->
+<div id="tab-situatii" class="content">
+  <div id="situations-container"></div>
+</div>
+
+<!-- ============ EXAMEN ============ -->
+<div id="tab-examen" class="content">
+  <div class="exam-start-view" id="exam-start-view">
+    <div class="exam-start">
+      <div style="font-size:3rem;margin-bottom:16px">🎯</div>
+      <h2>Simulare Examen DRPCIV</h2>
+      <p>Testează-te în condiții reale de examen</p>
+      <div class="exam-rules">
+        <li>26 întrebări generate aleatoriu</li>
+        <li>30 minute timp disponibil</li>
+        <li>Maxim 4 greșeli admise</li>
+        <li>Nu există explicații în timpul examenului</li>
+        <li>Poți naviga între întrebări liber</li>
+      </div>
+      <button class="btn btn-primary" style="font-size:1rem;padding:14px 36px" onclick="startExam()">🚀 Începe Simularea</button>
+    </div>
+  </div>
+  <div class="exam-active" id="exam-active">
+    <div class="exam-top">
+      <div class="exam-timer" id="exam-timer">30:00</div>
+      <div class="exam-progress-text" id="exam-prog-text">Întrebarea 1 din 26</div>
+      <div style="flex:1"></div>
+      <button class="btn btn-danger" onclick="finishExam()">Predă</button>
+    </div>
+    <div class="exam-dots" id="exam-dots"></div>
+    <div id="exam-question-container"></div>
+    <div class="q-nav">
+      <button class="btn btn-secondary" onclick="examPrev()">← Anterior</button>
+      <button class="btn btn-secondary" onclick="examNext()">Următor →</button>
+    </div>
+  </div>
+  <div class="exam-result" id="exam-result">
+    <div class="result-circle" id="result-circle">0</div>
+    <div class="result-title" id="result-title"></div>
+    <div class="result-sub" id="result-sub"></div>
+    <div id="result-details" style="text-align:left;margin:20px auto;max-width:500px"></div>
+    <button class="btn btn-primary" onclick="restartExam()">🔄 Încearcă din nou</button>
+  </div>
+</div>
+
+<!-- ============ JURNAL ============ -->
+<div id="tab-jurnal" class="content">
+  <div class="card journal-input">
+    <div class="card-title">📝 Adaugă o notă</div>
+    <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <select id="entry-type">
+        <option value="nota">📌 Notă generală</option>
+        <option value="studiu">📚 Sesiune studiu</option>
+        <option value="gresit">❌ Am greșit la</option>
+        <option value="invatat">✅ Am înțeles</option>
+      </select>
+    </div>
+    <textarea id="entry-text" placeholder="Scrie ce ai studiat, ce ai greșit, ce ai înțeles..."></textarea>
+    <button class="btn btn-primary" onclick="addJournalEntry()">✚ Adaugă</button>
+  </div>
+  <div id="journal-entries"></div>
+</div>
+
+<script>
+// ===================== DATE =====================
+
+const REGULI = [
+  {
+    emoji:'⚡', title:'Prioritatea de trecere', count: 8,
+    rules:[
+      {type:'danger', title:'Regula generală', text:'La intersecții fără semne, vehiculul din <span class="highlight">dreapta</span> are prioritate față de cel din stânga. Aceasta este regula de bază a priorității.'},
+      {type:'info', title:'Drumul cu prioritate', text:'Drumul cu prioritate este marcat cu semnul <span class="highlight blue">Drum cu prioritate</span> (romb galben) sau <span class="highlight blue">Cedează trecerea</span>. Circulând pe el, ai prioritate față de cele secundare.'},
+      {type:'danger', title:'STOP — oprire obligatorie', text:'La semnul <span class="highlight red">STOP</span> ești obligat să oprești complet chiar dacă nu vine niciun vehicul, indiferent de vizibilitate. Neoprirea = amendă + puncte penalizare.'},
+      {type:'info', title:'Vehicule cu regim special', text:'Ambulanța, poliția, pompierii cu semnale acustice+luminoase active au prioritate absolută. Trebuie să eliberezi calea imediat, inclusiv pe bandă de urgență sau trotuar dacă e necesar.'},
+      {type:'green', title:'Tramvaiul', text:'Tramvaiul are prioritate față de celelalte vehicule, cu excepția cazului când vine din stânga pe un drum cu prioritate. La intersecții nesemaforizate, tramvaiul trece primul.'},
+      {type:'danger', title:'Intrarea pe drumul principal', text:'La ieșirea dintr-o parcare, benzinărie, curte sau drum secundar ești obligat să acorzi prioritate <span class="highlight red">TUTUROR</span> participanților la trafic de pe drumul principal, inclusiv pietonilor.'},
+      {type:'info', title:'Prioritatea la semafoare', text:'Verde = treci, dar verifici dacă e liber. Galben = pregătire pentru stop (NU accelerezi!). Roșu = oprire obligatorie. Săgeta verde clipitoare = poți trece în direcția indicată cu prudență.'},
+      {type:'green', title:'Calea ferată', text:'Trenul are prioritate absolută la trecerile la nivel cu cale ferată. Oprești la semnalul sonor/luminos ÎNAINTE de bariere. Dacă barierele sunt ridicate, reduci viteza și te asiguri că nu vine trenul.'},
+    ]
+  },
+  {
+    emoji:'🚀', title:'Viteză și distanță de siguranță', count: 7,
+    rules:[
+      {type:'danger', title:'Viteze maxime legale în România', text:'<span class="highlight">50 km/h</span> în localitate · <span class="highlight">90 km/h</span> pe drumul național · <span class="highlight">100 km/h</span> pe drumul expres · <span class="highlight">130 km/h</span> pe autostradă. Depășirea cu >50 km/h = reținerea permisului.'},
+      {type:'info', title:'Viteza minimă pe autostradă', text:'Pe autostradă este interzis să circuli cu mai puțin de <span class="highlight blue">50 km/h</span> dacă nu este altfel semnalizat. Sub această viteză blochezi traficul și ești pericol public.'},
+      {type:'green', title:'Adaptarea vitezei', text:'Indiferent de limita legală, ești obligat să adaptezi viteza la condițiile de trafic: ploaie, ceață, gheață, vizibilitate redusă, aglomerație, treceri de pietoni.'},
+      {type:'danger', title:'Distanța de siguranță', text:'Formula simplă: <span class="highlight">viteza ÷ 2 = metri</span>. La 80 km/h → 40m. La 120 km/h → 60m. Pe ploaie și gheață se dublează. Urmărirea prea apropiată = infracțiune.'},
+      {type:'info', title:'Limitatoarele de viteză speciale', text:'<span class="highlight blue">30 km/h</span> în zone școlare și rezidențiale. <span class="highlight blue">60 km/h</span> autoturisme cu remorcă pe drum național. <span class="highlight blue">80 km/h</span> autoturisme cu remorcă pe autostradă.'},
+      {type:'danger', title:'Radarul și toleranțele', text:'RADAR: toleranță oficială <span class="highlight red">5 km/h</span> sau 3% din limită. 50→amenda începe de la 56 km/h real. Nu te baza pe toleranțe.'},
+      {type:'green', title:'Viteza în condiții de iarnă', text:'Pe drumuri acoperite cu zăpadă, polei sau gheață, viteza maximă recomandată este 50% din limita legală, indiferent de echiparea cu anvelope de iarnă.'},
+    ]
+  },
+  {
+    emoji:'↪️', title:'Depășirea', count: 6,
+    rules:[
+      {type:'danger', title:'Când este INTERZISĂ depășirea', text:'Interzisă la: treceri de pietoni · intersecții (cu excepția celor cu sens giratoriu pe vehiculele din dreapta) · curbe fără vizibilitate · vârfuri de deal · pasaje · la mai puțin de <span class="highlight red">50m</span> de o trecere la nivel cu calea ferată.'},
+      {type:'info', title:'Obligațiile celui care depășește', text:'1. Te asiguri că e linie continuă și că e vizibilitate. 2. Semnalizezi. 3. Accelerezi înainte de a intra pe contrasens. 4. Revii pe banda ta complet înainte de a reduce viteza. 5. Nu forțezi vehiculul depășit să reducă viteza.'},
+      {type:'green', title:'Obligațiile vehiculului depășit', text:'Nu accelera! Nu schimba direcția spre stânga. Dacă se poate, tragi ușor spre dreapta pentru a facilita manevra. La nevoie, reduci ușor viteza.'},
+      {type:'danger', title:'Linia continuă', text:'Linia continuă <span class="highlight red">alba sau galbenă</span> în axul drumului interzice depășirea ABSOLUT. Poate fi trecută numai pentru a evita un obstacol fix, cu viteză redusă, asigurând că e liber.'},
+      {type:'info', title:'Depășirea bicicliștilor', text:'Distanța minimă laterală față de biciclist: <span class="highlight blue">1 metru</span> în localitate, <span class="highlight blue">1,5 metri</span> în afara localității. Reduce viteza obligatoriu.'},
+      {type:'danger', title:'Depășirea coloanelor', text:'Coloana de vehicule nu se depășește pe dreapta. Excepție: circulația pe benzi paralele unde coloana din dreapta înaintează mai rapid (blocaje).'},
+    ]
+  },
+  {
+    emoji:'🍺', title:'Alcool, droguri și oboseală', count: 5,
+    rules:[
+      {type:'danger', title:'Limita de alcool', text:'<span class="highlight red">0,0 g/l</span> în sânge pentru șoferii cu mai puțin de 1 an vechime sau pentru conducătorii de vehicule cu mai mult de 9 locuri / camioane. Pentru ceilalți: <span class="highlight red">0,8 g/l</span> = infracțiune. Sub 0,8 → contravenție.'},
+      {type:'danger', title:'Sancțiuni pentru alcool la volan', text:'0,0–0,8 g/l = amendă + 180 zile suspendare. Peste 0,8 g/l = dosar penal + închisoare sau amendă penală + suspendare 3-5 ani. Recidivă = anularea permisului.'},
+      {type:'info', title:'Drogurile la volan', text:'Conducerea sub influența drogurilor este <span class="highlight red">infracțiune</span> indiferent de cantitate sau tip. Testul drugalert este recunoscut legal. Sancțiunea: similar sau mai grav decât alcoolul.'},
+      {type:'danger', title:'Oboseala', text:'Sunt obligat să fac o pauză de minimum <span class="highlight red">15 minute</span> după 2 ore de condus continuu. Microsomnolenele (2-3 secunde) la 130 km/h = 72 metri fără control. Cea mai frecventă cauză de accident mortal pe autostradă.'},
+      {type:'green', title:'Medicamente', text:'Multe medicamente (antihistaminice, anxiolitice, analgezice puternice) interzic conducerea. Citești prospectul și întrebi medicul. Dacă ești oprit și testul iese pozitiv, poți răspunde penal chiar dacă ai rețetă.'},
+    ]
+  },
+  {
+    emoji:'🅿️', title:'Staționare și parcare', count: 6,
+    rules:[
+      {type:'danger', title:'Unde este interzisă oprirea', text:'Interzis oprirea: pe treceri de pietoni și la mai puțin de <span class="highlight red">10m</span> înaintea lor · în intersecții și la mai puțin de <span class="highlight red">25m</span> de semnalizare · la mai puțin de <span class="highlight red">25m</span> de intrare în tuneluri · pe calea ferată și la mai puțin de <span class="highlight red">50m</span> de aceasta.'},
+      {type:'danger', title:'Unde este interzisă parcarea', text:'Toate restricțiile de oprire + zone cu marcaj galben · față de bornele de incendiu la mai puțin de <span class="highlight red">5m</span> · față de locuri de oprire mijloace de transport la mai puțin de <span class="highlight red">25m</span> · față de alte vehicule dacă mai rămân mai puțin de <span class="highlight red">3m</span> liber.'},
+      {type:'info', title:'Semnalizarea la oprire/staționare', text:'Dacă ești avariat sau în pană, activezi <span class="highlight blue">avariile</span> și plasezi triunghiul reflectorizant la minimum <span class="highlight blue">30m</span> în localitate și <span class="highlight blue">100m</span> în afara localității.'},
+      {type:'green', title:'Parcarea pe deal', text:'Dacă parchezi pe pantă: roți îndreptate spre bordură (la coborâre) sau spre centrul drumului (la urcare). Frâna de mână trasă. Dacă ai cutie manuală: bagă treapta 1 (la coborâre) sau marșarier (la urcare).'},
+      {type:'info', title:'Locurile rezervate', text:'Locuri marcate cu albastru = parcare cu plată sau abonament. Locuri marcate cu semn handicap = rezervate persoanelor cu dizabilități. Amenzile sunt consistente.'},
+      {type:'danger', title:'Parcarea pe trotuar', text:'Permisă numai dacă rămân <span class="highlight red">minimum 1,5m</span> liber pentru pietoni și dacă există indicator care permite. Altfel = contravenție + posibilă ridicare.'},
+    ]
+  },
+  {
+    emoji:'🛡️', title:'Centura și echipamente de siguranță', count: 4,
+    rules:[
+      {type:'danger', title:'Centura de siguranță', text:'Obligatorie pentru toți ocupanții, inclusiv pasagerii din spate. Conducătorul răspunde pentru copiii sub 16 ani. Amenda: <span class="highlight red">4-8 puncte</span> + amendă. Refuzul = aceleași sancțiuni ca și conducerea fără permis.'},
+      {type:'info', title:'Scaunul pentru copii', text:'Copiii sub <span class="highlight blue">135 cm</span> sau sub <span class="highlight blue">36 kg</span> trebuie transportați în scaun omologat. Sub 150 cm = scaun obligatoriu pe locul din față. Omologare ECE R44 sau R129.'},
+      {type:'green', title:'Trusa medicală și triunghiul', text:'Obligatorii în mașină: trusă medicală + triunghi reflectorizant. Lipsa = amendă. Recomandare: gilet reflectorizant în habitaclu (nu în portbagaj!) pentru că trebuie să-l porți ÎNAINTE de a coborî.'},
+      {type:'danger', title:'Telefonul la volan', text:'Interzis complet telefonul ținut în mână. Permis doar <span class="highlight">hands-free</span> (căști sau bluetooth montat). Inclusiv la semaforul roșu — motorul funcționând = conduci! Amendă + 4 puncte penalizare.'},
+    ]
+  },
+];
+
+const SEMNE = [
+  {id:'A1',cat:'pericol',name:'Curbe periculoase',desc:'Anunță o succesiune de curbe periculoase, prima la stânga. Reduce viteza și fii pregătit pentru schimbări de direcție.',tags:['warning'],svg:'triangle_curve'},
+  {id:'A2',cat:'pericol',name:'Curbă periculoasă',desc:'Curbă periculoasă spre dreapta. Reduce viteza, te apropii de axul drumului, frânezi înainte de curbă nu în ea.',tags:['warning'],svg:'triangle_curve_r'},
+  {id:'A3',cat:'pericol',name:'Drum în pantă',desc:'Pantă descendentă accentuată. Bagă o treaptă inferioară înainte de pantă, nu frâna continuu (risc supraîncălzire frâne).',tags:['warning'],svg:'triangle_slope'},
+  {id:'A4',cat:'pericol',name:'Trecere pietoni',desc:'Atenție, trecere de pietoni nesemaforizată. Reduce viteza, observi pietonii și le acorzi prioritate.',tags:['warning','danger'],svg:'triangle_ped'},
+  {id:'A5',cat:'pericol',name:'Copii',desc:'Zonă frecventată de copii (lângă școli, locuri de joacă). Reducere viteză obligatorie. Atenție sporită.',tags:['warning','danger'],svg:'triangle_child'},
+  {id:'A6',cat:'pericol',name:'Intersecție cu prioritate',desc:'Urmează o intersecție. Verifici dacă ai prioritate sau trebuie să o acorzi (îl citești împreună cu alte semne).',tags:['warning'],svg:'triangle_cross'},
+  {id:'A7',cat:'pericol',name:'Animale domestice',desc:'Animale (vaci, cai, oi) pot traversa. Reduce viteza, fii pregătit să oprești brusc.',tags:['warning'],svg:'triangle_animal'},
+  {id:'A8',cat:'pericol',name:'Carosabil alunecos',desc:'Pericol de alunecare a carosabilului (ploaie, polei, nisip). Reduce viteza, evită frânările și accelerările bruște.',tags:['warning','danger'],svg:'triangle_slippery'},
+  {id:'B1',cat:'prioritate',name:'Drum cu prioritate',desc:'Ești pe drumul cu prioritate față de toate drumurile secundare. Romb galben cu chenar alb.',tags:['info'],svg:'diamond_priority'},
+  {id:'B2',cat:'prioritate',name:'Cedează trecerea',desc:'Ești obligat să acorzi prioritate vehiculelor de pe drumul principal. Triunghi alb cu vârf în jos, bordură roșie.',tags:['warning'],svg:'yield'},
+  {id:'B3',cat:'prioritate',name:'STOP',desc:'Oprire completă obligatorie înainte de a intra în intersecție. Chiar dacă e liber, trebuie să oprești complet (roată nemișcată).',tags:['danger'],svg:'stop'},
+  {id:'B4',cat:'prioritate',name:'Prioritate față de sens opus',desc:'Ai prioritate față de vehiculele care vin din sens opus (la pasaj îngust). Panou dreptunghiular cu săgeată roșie/albă.',tags:['info'],svg:'priority_ahead'},
+  {id:'B5',cat:'prioritate',name:'Cedează față de sens opus',desc:'Acorzi prioritate vehiculelor din sens opus la pasaj îngust sau lucrări. Panou dreptunghiular, inversul precedentului.',tags:['warning'],svg:'yield_opposite'},
+  {id:'C1',cat:'interzicere',name:'Intrarea interzisă',desc:'Interzis accesul oricărui vehicul (inclusiv pietoni pe unele drumuri). Nu intri nici pentru încărcătură.',tags:['danger'],svg:'no_entry'},
+  {id:'C2',cat:'interzicere',name:'Depășire interzisă',desc:'Interzisă depășirea tuturor vehiculelor cu motor, pe toată zona de acțiune a semnului.',tags:['danger'],svg:'no_overtake'},
+  {id:'C3',cat:'interzicere',name:'Viteză maximă 50',desc:'Limita de viteză 50 km/h. Respecti limita până la semn de anulare sau alt semn de viteză.',tags:['warning'],svg:'speed_50'},
+  {id:'C4',cat:'interzicere',name:'Oprirea interzisă',desc:'Interzisă oprirea pe toată durata acțiunii semnului, pe acea parte a drumului. Cerc roșu cu cruce galbenă.',tags:['danger'],svg:'no_stop'},
+  {id:'C5',cat:'interzicere',name:'Staționarea interzisă',desc:'Interzisă staționarea, permisă oprirea momentană pentru îmbarcare/debarcare. Cerc roșu cu linie galbenă orizontală.',tags:['warning'],svg:'no_parking'},
+  {id:'D1',cat:'obligare',name:'Înainte',desc:'Ești obligat să mergi înainte. Nu poți vira stânga sau dreapta la această intersecție.',tags:['info'],svg:'mandatory_ahead'},
+  {id:'D2',cat:'obligare',name:'Viraj obligatoriu dreapta',desc:'Ești obligat să virezi la dreapta. Instalat înaintea intersecției.',tags:['info'],svg:'mandatory_right'},
+  {id:'D3',cat:'obligare',name:'Sens giratoriu',desc:'Sens giratoriu — circulați în sensul indicat de săgeți (sensul acelor de ceasornic în România). Ai prioritate față de cei care intră.',tags:['info'],svg:'roundabout'},
+  {id:'D4',cat:'obligare',name:'Pistă obligatorie biciclete',desc:'Obligatoriu pentru bicicliști. Vehiculele cu motor nu au voie pe pistă.',tags:['info'],svg:'bike_lane'},
+  {id:'E1',cat:'informare',name:'Autostradă',desc:'Începe autostrada. Viteză min. 50, max. 130 km/h. Interzis vehiculele cu viteză max. sub 50 km/h, pietonii, bicicliștii.',tags:['ok'],svg:'motorway'},
+  {id:'E2',cat:'informare',name:'Parcare',desc:'Loc de parcare autorizat. Poate fi însoțit de indicații suplimentare (ore, tip vehicul, plată).',tags:['ok'],svg:'parking'},
+  {id:'E3',cat:'informare',name:'Trecere pietoni',desc:'Informează existența unei treceri de pietoni. Semn dreptunghiular albastru cu pieton alb.',tags:['ok'],svg:'crosswalk_info'},
+  {id:'E4',cat:'informare',name:'Spital',desc:'Semnalizează apropierea unui spital. Reduce zgomotul (claxon interzis, zgomot motor redus).',tags:['ok'],svg:'hospital'},
+];
+
+const QUESTIONS = [
+  {id:1,cat:'prioritate',text:'La o intersecție fără semne de circulație și fără semafor, vehiculul A vine din dreapta față de vehiculul B. Care are prioritate?',opts:['Vehiculul A, deoarece vine din dreapta','Vehiculul B, deoarece e pe drum principal','Cel care a ajuns primul','Cel care semnalizează'],correct:0,expl:'Regula fundamentală: la intersecții fără semne, vehiculul din dreapta are prioritate. A vine din dreapta față de B, deci A trece primul.'},
+  {id:2,cat:'prioritate',text:'La semnul STOP ești obligat să:',opts:['Reduci viteza și verifici dacă e liber','Oprești complet chiar dacă nu vine niciun vehicul','Oprești doar dacă vine un vehicul','Acorzi prioritate și continui fără oprire completă'],correct:1,expl:'Semnul STOP impune oprire COMPLETĂ obligatorie — roata trebuie să se oprească efectiv, indiferent de vizibilitate sau trafic.'},
+  {id:3,cat:'viteza',text:'Care este viteza maximă legală pe autostradă în România pentru autoturisme?',opts:['110 km/h','120 km/h','130 km/h','150 km/h'],correct:2,expl:'Pe autostradă: 130 km/h pentru autoturisme. Excepție: autoturisme cu remorcă = max. 80 km/h pe autostradă.'},
+  {id:4,cat:'viteza',text:'Care este viteza maximă în localitate?',opts:['40 km/h','50 km/h','60 km/h','70 km/h'],correct:1,expl:'Limita generală în localitate este 50 km/h. Zonele rezidențiale și școlare pot avea limite mai mici (30 km/h), marcate separat.'},
+  {id:5,cat:'viteza',text:'Formula simplă pentru distanța de siguranță este:',opts:['Viteza înmulțită cu 2 (în metri)','Viteza împărțită la 2 (în metri)','100 de metri indiferent de viteză','Viteza împărțită la 3 (în metri)'],correct:1,expl:'Viteza ÷ 2 = distanța de siguranță în metri. Exemplu: 80 km/h → 40 metri. Pe ploaie sau gheață, distanța se dublează.'},
+  {id:6,cat:'alcool',text:'Care este limita legală de alcool în sânge pentru conducătorii auto cu peste 1 an vechime?',opts:['0,0 g/l','0,5 g/l','0,8 g/l','1,0 g/l'],correct:2,expl:'0,8 g/l reprezintă limita de la care se comite infracțiune. Între 0,0-0,8 g/l este contravenție. Pentru șoferii noi (sub 1 an) și șoferii de vehicule mari, limita este 0,0 g/l.'},
+  {id:7,cat:'alcool',text:'Cât timp după consumul a 2 beri medii trebuie să aștepți înainte de a conduce?',opts:['1 oră','2 ore','Minimum 4-6 ore (depinde de organism)','Nu există timp minim'],correct:2,expl:'Nu există un timp fix — depinde de greutate, alimentație, stare de sănătate. O bere mare = ~3-4 ore pentru metabolizare completă. Regula sigură: dacă ai băut, nu conduci.'},
+  {id:8,cat:'depasire',text:'Depășirea este INTERZISĂ la:',opts:['Drum drept cu vizibilitate bună','Trecere pentru pietoni','Drum cu 2 benzi în același sens','Ieșire din localitate'],correct:1,expl:'Depășirea este interzisă la trecerile de pietoni, intersecții (cu excepții), curbe fără vizibilitate, vârfuri de deal, pasaje, treceri la nivel cu CF (în 50m).'},
+  {id:9,cat:'depasire',text:'Care este distanța minimă laterală față de un biciclist la depășire pe drum național?',opts:['0,5 metri','1 metru','1,5 metri','2 metri'],correct:2,expl:'Pe drumuri în afara localității: minimum 1,5 metri față de biciclist. În localitate: minimum 1 metru. Reduce viteza obligatoriu la depășirea bicicliștilor.'},
+  {id:10,cat:'semne',text:'Ce înseamnă triunghiul alb cu vârful în jos și conturul roșu?',opts:['STOP — oprire obligatorie','Cedează trecerea','Drum cu prioritate','Atenție — pericol general'],correct:1,expl:'Triunghiul alb cu vârful în jos (Cedează trecerea) înseamnă că ești obligat să acorzi prioritate vehiculelor de pe drumul principal. Nu trebuie să oprești complet dacă e liber, dar trebuie să cedezi.'},
+  {id:11,cat:'semne',text:'Rombul galben cu chenar alb semnifică:',opts:['Cedează trecerea','Drum cu prioritate','Prioritate față de sens opus','Autostradă'],correct:1,expl:'Rombul galben = Drum cu prioritate. Ai prioritate față de toate drumurile secundare. Este confirmat periodic cu o versiune mai mică pe drumul pe care circulezi.'},
+  {id:12,cat:'prioritate',text:'Tramvaiul are prioritate față de autovehicule:',opts:['Întotdeauna, fără excepție','Întotdeauna, cu excepția când vine din stânga pe drum cu prioritate','Numai când are semafor verde','Numai în intersecții nesemaforizate'],correct:1,expl:'Tramvaiul are prioritate față de celelalte vehicule, cu excepția cazului când vine din stânga pe un drum cu prioritate. Regula se aplică la intersecții nesemaforizate.'},
+  {id:13,cat:'viteza',text:'Care este viteza maximă pe drumul național pentru autoturisme?',opts:['80 km/h','90 km/h','100 km/h','110 km/h'],correct:1,expl:'Pe drumul național: 90 km/h pentru autoturisme. Pe drumul expres: 100 km/h. Pe autostradă: 130 km/h.'},
+  {id:14,cat:'alcool',text:'Cât de des trebuie să iei o pauză la conducere îndelungată?',opts:['La fiecare 3 ore','La fiecare 2 ore, minimum 15 minute','La fiecare 4 ore','Nu există obligație legală'],correct:1,expl:'Obligatoriu: pauză de minimum 15 minute după maximum 2 ore de condus continuu. Oboseala provoacă microsomnolențe care la viteză mare pot fi fatale.'},
+  {id:15,cat:'semne',text:'Ce semn interzice depășirea?',opts:['Cerc roșu cu bara roșie','Cerc alb cu 2 mașini (neagră + roșie)','Triunghi cu săgeată','Pătrat albastru cu mașini'],correct:1,expl:'Semnul de interzicere a depășirii este un cerc alb cu bordură roșie care reprezintă 2 vehicule — unul negru (care depășește) și unul roșu (pe care îl depășește). Zona de acțiune: până la semn de anulare.'},
+  {id:16,cat:'prioritate',text:'La intrarea dintr-o parcare pe drumul public, ești obligat să:',opts:['Semnalizezi și intri','Acorzi prioritate vehiculelor și pietonilor de pe drum','Claxonezi pentru a anunța ieșirea','Mergi cât mai repede pentru a intra în trafic'],correct:1,expl:'La ieșirea din parcare, benzinărie, curte sau orice teren privat, ești obligat să acorzi prioritate TUTUROR participanților la trafic: vehicule, bicicliști, pietoni.'},
+  {id:17,cat:'viteza',text:'Un autoturism cu remorcă poate merge pe autostradă cu maximum:',opts:['100 km/h','110 km/h','80 km/h','130 km/h'],correct:2,expl:'Autoturismele cu remorcă au viteză maximă redusă: 80 km/h pe autostradă, 60 km/h pe drum național. Remorca modifică semnificativ stabilitatea vehiculului.'},
+  {id:18,cat:'depasire',text:'Dacă ești depășit, ești obligat să:',opts:['Accelerezi pentru a face depășirea mai scurtă','Nu accelerezi și poți trage ușor spre dreapta','Claxonezi de două ori','Faci semn cu luminile pentru a permite revenirea'],correct:1,expl:'Vehiculul depășit NU accelerează. Se poate trage ușor spre dreapta pentru a facilita manevra. Accelerarea în timpul depășirii este o contravenție și poate provoca accidente.'},
+  {id:19,cat:'semne',text:'Semnul de STOP diferă de Cedează trecerea prin faptul că:',opts:['Are formă diferită (octogon vs triunghi)','Impune oprire completă obligatorie','Este de culoare roșie','Ambele a) și b) sunt corecte'],correct:3,expl:'STOP: octogon roșu cu text alb = oprire obligatorie completă. Cedează: triunghi alb cu vârf în jos = acorzi prioritate, fără oprire obligatorie dacă e liber. Sunt diferite ca formă ȘI cerință.'},
+  {id:20,cat:'semne',text:'Care semn anunță o trecere de pietoni?',opts:['Dreptunghi galben cu pieton','Triunghi cu persoană care merge','Dreptunghi albastru cu pieton alb','Pătrat roșu cu persoană'],correct:2,expl:'Semnul de informare "Trecere pietoni" este un dreptunghi albastru cu un pieton alb. Nu trebuie confundat cu semnul de pericol (triunghi) care anunță apropierea de o trecere.'},
+];
+
+const SITUATII = [
+  {
+    id:1,
+    title:'Intersecție cu 4 drumuri — fără semne',
+    desc:'Vehiculul A vine din nord spre sud. Vehiculul B vine din vest spre est. Nu există semne de prioritate.',
+    question:'Care vehicul are prioritate?',
+    opts:['A, pentru că merge înainte','B, pentru că vine din dreapta față de A','A, pentru că vine din nord','Ambele au prioritate egală'],
+    correct:1,
+    expl:'B vine din DREAPTA față de A. La intersecții fără semne, vehiculul din dreapta are prioritate. A trebuie să cedeze și să aștepte ca B să treacă.',
+    svgType:'intersect_4way_AB'
+  },
+  {
+    id:2,
+    title:'Viraj la stânga — cum procedezi?',
+    desc:'Vrei să virezi la stânga. Vine un vehicul din sens opus pe același drum.',
+    question:'Ce faci?',
+    opts:['Virezi rapid pentru a economisi timp','Acorzi prioritate vehiculului din sens opus și virezi după ce acesta trece','Semnalizezi și virezi — ai prioritate deoarece intri pe altă stradă','Claxonezi pentru a atenționa'],
+    correct:1,
+    expl:'La virajul la stânga, ești obligat să acorzi prioritate vehiculelor din sens opus care merg înainte. Este una dintre cele mai frecvente cauze de accidente.',
+    svgType:'left_turn'
+  },
+  {
+    id:3,
+    title:'Sens giratoriu — cine are prioritate?',
+    desc:'Ești în sensul giratoriu și un vehicul vrea să intre în sens giratoriu pe dreapta ta.',
+    question:'Cine are prioritate?',
+    opts:['Vehiculul care intră, că vine din dreapta','Tu, pentru că ești deja în sensul giratoriu','Ambele au prioritate egală','Primul care ajunge la linia de stop'],
+    correct:1,
+    expl:'Vehiculele care circulă deja în sensul giratoriu au prioritate față de cele care vor să intre. Semnul "Cedează trecerea" sau "STOP" este la intrare, nu la ieșire.',
+    svgType:'roundabout_sit'
+  },
+  {
+    id:4,
+    title:'Depășire pe linie discontinuă',
+    desc:'Ești pe un drum cu linie discontinuă în axul drumului. Înainte de tine e o curbă la circa 150m.',
+    question:'Poți depăși?',
+    opts:['Da, linia e discontinuă','Nu, vizibilitatea în curbă e insuficientă','Da, dacă vine cineva oprești înainte de curbă','Depinde de viteza vehiculului din față'],
+    correct:1,
+    expl:'Deși linia este discontinuă (tehnic permisă depășirea), regula de vizibilitate prevalează. Nu poți depăși când nu ai vizibilitate suficientă să completezi manevra în siguranță. Curba la 150m nu îți asigură distanța necesară.',
+    svgType:'overtake_curve'
+  },
+];
+
+// ===================== STATE =====================
+let quizFilter = 'all';
+let currentQuiz = 0;
+let quizQuestions = [...QUESTIONS];
+let quizAnswers = {};
+let examQuestions = [];
+let examAnswers = {};
+let examCurrent = 0;
+let examTimer = null;
+let examSeconds = 1800;
+let examFinished = false;
+let chapterStats = {prioritate:[0,0],viteza:[0,0],depasire:[0,0],alcool:[0,0],semne:[0,0]};
+
+const LS_KEY = 'permis_b_data';
+
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({quizAnswers,chapterStats}));
+  } catch(e) { console.warn('localStorage indisponibil'); }
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return {};
+    const d = JSON.parse(raw);
+    if(d.quizAnswers) quizAnswers = d.quizAnswers;
+    if(d.chapterStats) chapterStats = d.chapterStats;
+    return d;
+  } catch(e) { return {}; }
+}
+function getJournal() {
+  const entries = document.querySelectorAll('#journal-entries .journal-entry');
+  // Just return what's stored
+  try { return JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) { return []; }
+}
+function getExamHistory() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY+'_exams')||'[]'); } catch(e) { return []; }
+}
+
+// ===================== TABS =====================
+function showTab(tab) {
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  const tabs = document.querySelectorAll('.tab');
+  const tabMap = {dashboard:0,reguli:1,semne:2,chestionar:3,situatii:4,examen:5,jurnal:6};
+  if(tabs[tabMap[tab]]) tabs[tabMap[tab]].classList.add('active');
+  if(tab==='dashboard') updateDashboard();
+}
+
+// ===================== DASHBOARD =====================
+function updateDashboard() {
+  let total = Object.keys(quizAnswers).length;
+  let correct = Object.values(quizAnswers).filter(a=>a.correct).length;
+  let wrong = total - correct;
+  let rate = total > 0 ? Math.round(correct/total*100) : 0;
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-wrong').textContent = wrong;
+  document.getElementById('stat-rate').textContent = total > 0 ? rate+'%' : '—';
+  document.getElementById('prog-fill').style.width = rate+'%';
+
+  // Chapter stats
+  const cats = ['prioritate','viteza','depasire','alcool','semne'];
+  cats.forEach((cat,i) => {
+    const idx = i+1;
+    const qs = QUESTIONS.filter(q=>q.cat===cat);
+    const answered = qs.filter(q=>quizAnswers[q.id]);
+    const correct = answered.filter(q=>quizAnswers[q.id]?.correct);
+    const pct = answered.length > 0 ? Math.round(correct.length/answered.length*100) : 0;
+    const fill = document.getElementById('cp-'+idx);
+    const score = document.getElementById('cs-'+idx);
+    if(fill) fill.style.width = pct+'%';
+    if(score) {
+      score.textContent = answered.length > 0 ? pct+'%' : '—';
+      score.className = 'chapter-score ' + (pct>=80?'ok':pct>=50?'warn':'bad');
+    }
+  });
+
+  // Exam history
+  const hist = getExamHistory();
+  const histEl = document.getElementById('exam-history');
+  if(hist.length===0) {
+    histEl.innerHTML = '<span style="color:var(--text3)">Nicio simulare efectuată încă.</span>';
+  } else {
+    histEl.innerHTML = hist.slice(-5).reverse().map(h=>`
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:1rem">${h.pass?'✅':'❌'}</span>
+        <span style="font-size:0.83rem;color:var(--text2)">${h.date}</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;color:${h.pass?'var(--accent3)':'var(--danger)'};margin-left:auto">${h.correct}/26</span>
+      </div>
+    `).join('');
+  }
+}
+
+// ===================== REGULI =====================
+function buildReguli() {
+  const container = document.getElementById('reguli-list');
+  container.innerHTML = REGULI.map((sec,si)=>`
+    <div class="rule-section">
+      <div class="rule-header" onclick="toggleRule(${si})" id="rh-${si}">
+        <span class="rule-emoji">${sec.emoji}</span>
+        <span class="rule-title">${sec.title}</span>
+        <span class="rule-count">${sec.count} reguli</span>
+        <span class="rule-chevron">▼</span>
+      </div>
+      <div class="rule-body" id="rb-${si}">
+        ${sec.rules.map(r=>`
+          <div class="rule-item ${r.type}">
+            <h4>${r.title}</h4>
+            <p>${r.text}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+function toggleRule(i) {
+  const h = document.getElementById('rh-'+i);
+  const b = document.getElementById('rb-'+i);
+  h.classList.toggle('open');
+  b.classList.toggle('open');
+}
+
+// ===================== SVG SIGNS =====================
+const svgDefs = {
+  triangle_curve: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><path d="M26 40 Q26 25 38 25 Q38 30 32 30 Q28 30 28 38" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/></svg>`,
+  triangle_curve_r: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><path d="M34 40 Q34 25 22 25 Q22 30 28 30 Q32 30 32 38" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/></svg>`,
+  triangle_slope: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><line x1="18" y1="44" x2="42" y2="28" stroke="#222" stroke-width="3.5"/><text x="44" y="46" font-size="11" fill="#222" font-weight="bold">%</text></svg>`,
+  triangle_ped: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><circle cx="30" cy="22" r="4" fill="#222"/><line x1="30" y1="26" x2="30" y2="38" stroke="#222" stroke-width="3"/><line x1="22" y1="32" x2="38" y2="32" stroke="#222" stroke-width="3"/><line x1="30" y1="38" x2="24" y2="46" stroke="#222" stroke-width="3"/><line x1="30" y1="38" x2="36" y2="46" stroke="#222" stroke-width="3"/></svg>`,
+  triangle_child: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><circle cx="26" cy="23" r="3.5" fill="#222"/><circle cx="36" cy="24" r="3" fill="#222"/><line x1="26" y1="26.5" x2="24" y2="36" stroke="#222" stroke-width="2.5"/><line x1="24" y1="36" x2="20" y2="43" stroke="#222" stroke-width="2.5"/><line x1="24" y1="36" x2="28" y2="43" stroke="#222" stroke-width="2.5"/><line x1="36" y1="27" x2="36" y2="43" stroke="#222" stroke-width="2.5"/></svg>`,
+  triangle_cross: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><line x1="30" y1="18" x2="30" y2="46" stroke="#222" stroke-width="3"/><line x1="16" y1="34" x2="44" y2="34" stroke="#222" stroke-width="3"/></svg>`,
+  triangle_animal: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><ellipse cx="30" cy="32" rx="12" ry="8" fill="#555"/><circle cx="22" cy="25" r="4" fill="#555"/><circle cx="38" cy="25" r="4" fill="#555"/><rect x="24" y="40" width="3" height="8" fill="#555"/><rect x="33" y="40" width="3" height="8" fill="#555"/></svg>`,
+  triangle_slippery: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><path d="M22 44 Q30 28 38 34 Q46 40 38 44" fill="none" stroke="#222" stroke-width="2.5"/><rect x="22" y="44" width="16" height="4" rx="2" fill="#222"/></svg>`,
+  diamond_priority: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,30 30,56 4,30" fill="#f5c518" stroke="white" stroke-width="4"/></svg>`,
+  yield: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,52 4,8 56,8" fill="white" stroke="#e63946" stroke-width="4"/><polygon points="30,44 12,16 48,16" fill="white" stroke="#e63946" stroke-width="3"/></svg>`,
+  stop: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="20,4 40,4 56,20 56,40 40,56 20,56 4,40 4,20" fill="#e63946"/><text x="50%" y="38" text-anchor="middle" font-size="16" font-weight="900" fill="white" font-family="Arial">STOP</text></svg>`,
+  priority_ahead: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="16" width="52" height="28" rx="4" fill="#4a9eff"/><text x="50%" y="36" text-anchor="middle" font-size="26" fill="white">→</text><text x="50%" y="36" text-anchor="middle" font-size="26" fill="#e63946" dx="14">→</text></svg>`,
+  yield_opposite: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="16" width="52" height="28" rx="4" fill="#4a9eff"/><text x="50%" y="36" text-anchor="middle" font-size="26" fill="#e63946">→</text><text x="50%" y="36" text-anchor="middle" font-size="26" fill="white" dx="14">→</text></svg>`,
+  no_entry: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#e63946"/><rect x="12" y="23" width="36" height="14" rx="3" fill="white"/></svg>`,
+  no_overtake: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="white" stroke="#e63946" stroke-width="4"/><line x1="8" y1="52" x2="52" y2="8" stroke="#e63946" stroke-width="4"/><text x="20" y="38" font-size="18">🚗</text><text x="30" y="28" font-size="14" fill="#e63946">🚗</text></svg>`,
+  speed_50: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="white" stroke="#e63946" stroke-width="4"/><text x="50%" y="38" text-anchor="middle" font-size="22" font-weight="900" fill="#222" font-family="Arial">50</text></svg>`,
+  no_stop: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="white" stroke="#e63946" stroke-width="4"/><line x1="8" y1="30" x2="52" y2="30" stroke="#f5c518" stroke-width="8"/><line x1="8" y1="52" x2="52" y2="8" stroke="#e63946" stroke-width="4"/></svg>`,
+  no_parking: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="white" stroke="#e63946" stroke-width="4"/><line x1="14" y1="30" x2="46" y2="30" stroke="#f5c518" stroke-width="6"/></svg>`,
+  mandatory_ahead: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><path d="M22 38 L30 14 L38 38 L30 34 Z" fill="white"/></svg>`,
+  mandatory_right: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><path d="M14 38 L30 30 L22 14 Q38 14 44 30 Q38 46 22 46" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/><polygon points="38 38 52 30 38 22" fill="white"/></svg>`,
+  roundabout: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><circle cx="30" cy="30" r="12" fill="none" stroke="white" stroke-width="4" stroke-dasharray="4 2"/><path d="M30 18 Q42 18 42 30" stroke="white" stroke-width="3" fill="none"/><polygon points="42 26 46 32 40 34" fill="white"/></svg>`,
+  bike_lane: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><circle cx="20" cy="36" r="9" fill="none" stroke="white" stroke-width="3"/><circle cx="40" cy="36" r="9" fill="none" stroke="white" stroke-width="3"/><line x1="20" y1="36" x2="30" y2="22" stroke="white" stroke-width="2.5"/><line x1="30" y1="22" x2="40" y2="36" stroke="white" stroke-width="2.5"/><line x1="30" y1="22" x2="30" y2="16" stroke="white" stroke-width="2.5"/><circle cx="30" cy="15" r="3" fill="white"/></svg>`,
+  motorway: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="52" height="44" rx="4" fill="#4a9eff"/><text x="50%" y="28" text-anchor="middle" font-size="9" fill="white" font-weight="bold">AUTOSTRADĂ</text><rect x="14" y="30" width="14" height="16" rx="2" fill="white"/><rect x="32" y="30" width="14" height="16" rx="2" fill="white"/><rect x="28" y="32" width="4" height="12" rx="1" fill="#4a9eff"/></svg>`,
+  parking: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><text x="50%" y="42" text-anchor="middle" font-size="38" font-weight="900" fill="white" font-family="Arial">P</text></svg>`,
+  crosswalk_info: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><circle cx="30" cy="18" r="6" fill="white"/><line x1="30" y1="24" x2="30" y2="40" stroke="white" stroke-width="4"/><line x1="18" y1="30" x2="42" y2="30" stroke="white" stroke-width="3"/><line x1="30" y1="40" x2="22" y2="52" stroke="white" stroke-width="3"/><line x1="30" y1="40" x2="38" y2="52" stroke="white" stroke-width="3"/></svg>`,
+  hospital: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><text x="50%" y="42" text-anchor="middle" font-size="30" fill="white" font-weight="bold" font-family="Arial">H</text></svg>`,
+};
+
+const tagLabels = {danger:'Pericol',warning:'Atenție',info:'Informare',ok:'Permisă'};
+const tagClasses = {danger:'tag-danger',warning:'tag-warning',info:'tag-info',ok:'tag-ok'};
+
+function buildSigns() {
+  renderSigns(SEMNE);
+}
+
+function renderSigns(signs) {
+  const grid = document.getElementById('signs-grid');
+  grid.innerHTML = signs.map(s=>`
+    <div class="sign-card" onclick="showSign('${s.id}')">
+      <div class="sign-svg">${svgDefs[s.svg]||'<svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#333" rx="4"/><text x="30" y="38" text-anchor="middle" font-size="28" fill="white">?</text></svg>'}</div>
+      <div class="sign-code">${s.id}</div>
+      <div class="sign-name">${s.name}</div>
+    </div>
+  `).join('');
+}
+
+function filterSigns(cat, btn) {
+  document.querySelectorAll('.signs-filter .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'all' ? SEMNE : SEMNE.filter(s=>s.cat===cat);
+  renderSigns(filtered);
+}
+
+function showSign(id) {
+  const s = SEMNE.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('modal-sign-img').innerHTML = `<div style="width:100px;height:100px;margin:0 auto 16px">${svgDefs[s.svg]||''}</div>`;
+  document.getElementById('modal-sign-code').textContent = s.id;
+  document.getElementById('modal-sign-name').textContent = s.name;
+  document.getElementById('modal-sign-desc').textContent = s.desc;
+  document.getElementById('modal-sign-tags').innerHTML = s.tags.map(t=>`<span class="tag ${tagClasses[t]}">${tagLabels[t]}</span>`).join('');
+  document.getElementById('sign-modal').classList.add('open');
+}
+function closeSignModal(e) { if(e.target.id==='sign-modal') closeModal(); }
+function closeModal() { document.getElementById('sign-modal').classList.remove('open'); }
+
+// ===================== CHESTIONAR =====================
+function buildQuiz() {
+  renderQuiz();
+}
+
+function getFilteredQuestions() {
+  return quizFilter === 'all' ? [...QUESTIONS] : QUESTIONS.filter(q=>q.cat===quizFilter);
+}
+
+function renderQuiz() {
+  quizQuestions = getFilteredQuestions();
+  if(currentQuiz >= quizQuestions.length) currentQuiz = 0;
+  document.getElementById('quiz-counter').textContent = `Întrebarea ${currentQuiz+1}/${quizQuestions.length}`;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = quizQuestions[currentQuiz];
+  if(!q) return;
+  const ans = quizAnswers[q.id];
+  const letters = ['A','B','C','D'];
+  document.getElementById('quiz-container').innerHTML = `
+    <div class="question-card">
+      <div class="q-category">${getCatLabel(q.cat)}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-options" id="opts-${q.id}">
+        ${q.opts.map((opt,i)=>`
+          <div class="q-option ${ans!==undefined?(i===q.correct?'correct answered':(i===ans?'wrong answered':'answered')):''}
+               " onclick="answerQuestion(${q.id},${i})">
+            <span class="q-option-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="q-explanation ${ans!==undefined?'show':''}">
+        <strong>${ans===q.correct?'✅ Corect!':'❌ Greșit!'}</strong> ${q.expl}
+      </div>
+    </div>
+  `;
+  document.getElementById('quiz-counter').textContent = `Întrebarea ${currentQuiz+1}/${quizQuestions.length}`;
+}
+
+function getCatLabel(c) {
+  const map = {prioritate:'⚡ Prioritate',viteza:'🚀 Viteză',depasire:'↪️ Depășire',alcool:'🍺 Alcool',semne:'🔺 Semne'};
+  return map[c]||c;
+}
+
+function answerQuestion(qid, opt) {
+  const q = QUESTIONS.find(x=>x.id===qid);
+  if(!q || quizAnswers[qid]!==undefined) return;
+  quizAnswers[qid] = {answer:opt, correct: opt===q.correct};
+  saveState();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if(currentQuiz < quizQuestions.length-1) { currentQuiz++; renderQuestion(); }
+}
+function prevQuestion() {
+  if(currentQuiz > 0) { currentQuiz--; renderQuestion(); }
+}
+function shuffleQuestions() {
+  quizQuestions = [...getFilteredQuestions()].sort(()=>Math.random()-0.5);
+  currentQuiz = 0;
+  renderQuestion();
+}
+function filterQuiz(cat, btn) {
+  document.querySelectorAll('#tab-chestionar .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  quizFilter = cat;
+  currentQuiz = 0;
+  renderQuiz();
+}
+
+// ===================== SITUATII =====================
+function buildSituatii() {
+  const sitSVGs = {
+    intersect_4way_AB: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" fill="#1e2028"/>
+      <rect x="88" y="0" width="24" height="200" fill="#2e3140"/>
+      <rect x="0" y="88" width="200" height="24" fill="#2e3140"/>
+      <rect x="90" y="2" width="20" height="86" fill="#3a3f52"/>
+      <rect x="90" y="112" width="20" height="86" fill="#3a3f52"/>
+      <rect x="2" y="90" width="86" height="20" fill="#3a3f52"/>
+      <rect x="112" y="90" width="86" height="20" fill="#3a3f52"/>
+      <line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="114" y1="100" x2="198" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <!-- A: nord spre sud -->
+      <g transform="translate(100,40)">
+        <polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/>
+        <text y="-18" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a9eff" font-family="Arial">A</text>
+      </g>
+      <!-- B: vest spre est -->
+      <g transform="translate(40,100)">
+        <polygon points="-14,0 6,-10 6,10" fill="#e63946" stroke="#fff" stroke-width="1.5" transform="rotate(90)"/>
+        <text x="-20" y="5" text-anchor="middle" font-size="13" font-weight="bold" fill="#e63946" font-family="Arial">B</text>
+      </g>
+      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">B vine din DREAPTA față de A</text>
+    </svg>`,
+    left_turn: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" fill="#1e2028"/>
+      <rect x="88" y="0" width="24" height="200" fill="#2e3140"/>
+      <rect x="0" y="88" width="110" height="24" fill="#2e3140"/>
+      <rect x="90" y="2" width="20" height="86" fill="#3a3f52"/>
+      <rect x="90" y="114" width="20" height="86" fill="#3a3f52"/>
+      <rect x="2" y="90" width="86" height="20" fill="#3a3f52"/>
+      <line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <!-- Tu: vine de jos, vrea sa vireze stanga -->
+      <g transform="translate(100,160)">
+        <polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/>
+        <text x="14" y="0" font-size="10" fill="#4a9eff" font-family="Arial">TU</text>
+      </g>
+      <path d="M100 145 Q60 100 30 100" stroke="#4a9eff" stroke-width="2.5" fill="none" stroke-dasharray="5 3"/>
+      <polygon points="30 93 22 100 30 107" fill="#4a9eff"/>
+      <!-- Vehicul din fata, vine din sus -->
+      <g transform="translate(100,50)">
+        <polygon points="0,14 -10,-6 10,-6" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+        <text x="14" y="5" font-size="9" fill="#e63946" font-family="Arial">sens opus</text>
+      </g>
+      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Acorzi prioritate vehiculului din sens opus</text>
+    </svg>`,
+    roundabout_sit: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" fill="#1e2028"/>
+      <circle cx="100" cy="100" r="50" fill="#2e3140" stroke="#3a3f52" stroke-width="2"/>
+      <circle cx="100" cy="100" r="22" fill="#1e2028"/>
+      <!-- intrari/iesiri -->
+      <rect x="88" y="0" width="24" height="50" fill="#2e3140"/><rect x="90" y="2" width="20" height="48" fill="#3a3f52"/>
+      <rect x="88" y="150" width="24" height="50" fill="#2e3140"/><rect x="90" y="150" width="20" height="48" fill="#3a3f52"/>
+      <rect x="150" y="88" width="50" height="24" fill="#2e3140"/><rect x="152" y="90" width="48" height="20" fill="#3a3f52"/>
+      <rect x="0" y="88" width="50" height="24" fill="#2e3140"/><rect x="2" y="90" width="48" height="20" fill="#3a3f52"/>
+      <!-- Masina IN sens giratoriu -->
+      <g transform="translate(130,70)rotate(-30)">
+        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/>
+        <text x="22" y="4" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(30)">TU</text>
+      </g>
+      <!-- Masina care vrea sa intre -->
+      <g transform="translate(165,95)">
+        <polygon points="14,0 -6,-8 -6,8" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+        <text x="0" y="-12" text-anchor="middle" font-size="9" fill="#e63946" font-family="Arial">intră</text>
+      </g>
+      <!-- Sageata sens giratoriu -->
+      <path d="M100 50 A50 50 0 0 1 150 100" stroke="#f5c518" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
+      <polygon points="148 88 156 100 144 102" fill="#f5c518"/>
+      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Tu ești în sens giratoriu = ai prioritate</text>
+    </svg>`,
+    overtake_curve: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="200" height="200" fill="#1e2028"/>
+      <path d="M60 200 Q60 80 140 0" stroke="#2e3140" stroke-width="30" fill="none"/>
+      <path d="M60 200 Q60 80 140 0" stroke="#3a3f52" stroke-width="26" fill="none"/>
+      <path d="M60 200 Q60 80 140 0" stroke="#f5c518" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
+      <!-- Tu -->
+      <g transform="translate(65,160)rotate(-10)">
+        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/>
+        <text x="-20" y="18" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(10)">TU</text>
+      </g>
+      <!-- Vehicul de depasit -->
+      <g transform="translate(70,130)rotate(-20)">
+        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#888"/>
+      </g>
+      <!-- Curba marcata -->
+      <text x="130" y="60" font-size="9" fill="#e63946" font-family="Arial">CURBA</text>
+      <text x="125" y="73" font-size="9" fill="#e63946" font-family="Arial">150m</text>
+      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Vizibilitate insuficientă = depășire interzisă!</text>
+    </svg>`
+  };
+
+  const container = document.getElementById('situations-container');
+  container.innerHTML = SITUATII.map(s=>`
+    <div class="situation-card">
+      <div class="sit-title">${s.title}</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:14px">${s.desc}</p>
+      ${sitSVGs[s.svgType]||''}
+      <div class="sit-question">${s.question}</div>
+      <div class="sit-options">
+        ${s.opts.map((opt,i)=>`
+          <div class="sit-opt" id="sopt-${s.id}-${i}" onclick="answerSit(${s.id},${i})">${opt}</div>
+        `).join('')}
+      </div>
+      <div class="sit-explanation" id="sit-expl-${s.id}">
+        <strong>Explicație:</strong> ${s.expl}
+      </div>
+    </div>
+  `).join('');
+
+  // answerSit este definit global
+}
+
+// ===================== EXAMEN =====================
+function startExam() {
+  examQuestions = [...QUESTIONS].sort(()=>Math.random()-0.5).slice(0,26);
+  examAnswers = {};
+  examCurrent = 0;
+  examSeconds = 1800;
+  examFinished = false;
+
+  document.getElementById('exam-start-view').classList.add('hide');
+  document.getElementById('exam-active').classList.add('show');
+  document.getElementById('exam-result').classList.remove('show');
+
+  buildExamDots();
+  renderExamQuestion();
+  startExamTimer();
+}
+
+function buildExamDots() {
+  document.getElementById('exam-dots').innerHTML = examQuestions.map((q,i)=>`
+    <div class="exam-dot" id="edot-${i}" onclick="goExamQ(${i})">${i+1}</div>
+  `).join('');
+  updateExamDot();
+}
+
+function updateExamDot() {
+  examQuestions.forEach((_,i)=>{
+    const d = document.getElementById('edot-'+i);
+    if(!d) return;
+    d.className = 'exam-dot';
+    if(i===examCurrent) d.classList.add('current');
+    else if(examAnswers[i]!==undefined) d.classList.add('answered');
+  });
+}
+
+function renderExamQuestion() {
+  const q = examQuestions[examCurrent];
+  if(!q) return;
+  const letters = ['A','B','C','D'];
+  const ans = examAnswers[examCurrent];
+  document.getElementById('exam-question-container').innerHTML = `
+    <div class="question-card">
+      <div class="q-category">${getCatLabel(q.cat)} &nbsp;·&nbsp; Întrebarea ${examCurrent+1} din ${examQuestions.length}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-options">
+        ${q.opts.map((opt,i)=>`
+          <div class="q-option ${ans===i?'correct':''}" onclick="answerExam(${i})">
+            <span class="q-option-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('exam-prog-text').textContent = `Întrebarea ${examCurrent+1} din ${examQuestions.length} · Răspunse: ${Object.keys(examAnswers).length}`;
+  updateExamDot();
+}
+
+function answerExam(opt) {
+  if(examFinished) return;
+  examAnswers[examCurrent] = opt;
+  renderExamQuestion();
+}
+
+function goExamQ(i) { examCurrent = i; renderExamQuestion(); }
+function examPrev() { if(examCurrent>0){examCurrent--;renderExamQuestion();} }
+function examNext() { if(examCurrent<examQuestions.length-1){examCurrent++;renderExamQuestion();} }
+
+function startExamTimer() {
+  if(examTimer) clearInterval(examTimer);
+  examTimer = setInterval(()=>{
+    examSeconds--;
+    const m = Math.floor(examSeconds/60);
+    const s = examSeconds%60;
+    const el = document.getElementById('exam-timer');
+    if(el) {
+      el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+      if(examSeconds<=120) el.classList.add('urgent');
+    }
+    if(examSeconds<=0) finishExam();
+  },1000);
+}
+
+function finishExam() {
+  if(examTimer) clearInterval(examTimer);
+  examFinished = true;
+  let correct = 0;
+  examQuestions.forEach((q,i)=>{
+    const ans = examAnswers[i];
+    if(ans===q.correct) correct++;
+    const d = document.getElementById('edot-'+i);
+    if(d){
+      d.className='exam-dot';
+      if(ans===q.correct) d.classList.add('correct-f');
+      else d.classList.add('wrong-f');
+    }
+  });
+  const wrong = 26 - correct;
+  const pass = wrong <= 4;
+
+  // Salvare in istoric
+  const hist = getExamHistory();
+  hist.push({date: new Date().toLocaleDateString('ro-RO'), correct, wrong, pass});
+  try { localStorage.setItem(LS_KEY+'_exams', JSON.stringify(hist)); } catch(e) {}
+
+  document.getElementById('exam-active').classList.remove('show');
+  const res = document.getElementById('exam-result');
+  res.classList.add('show');
+  const circ = document.getElementById('result-circle');
+  circ.className = 'result-circle ' + (pass?'pass':'fail');
+  circ.textContent = correct+'/26';
+  document.getElementById('result-title').textContent = pass ? '✅ PROMOVAT!' : '❌ Nepromovat';
+  document.getElementById('result-sub').textContent = pass
+    ? `Felicitări! Ai ${wrong} greșeli (maxim admis: 4). Poți susține examenul real!`
+    : `Ai ${wrong} greșeli (maxim admis: 4). Mai exersează și încearcă din nou!`;
+  document.getElementById('result-details').innerHTML = `
+    <div class="card">
+      <div class="card-title">Greșeli detaliate</div>
+      ${examQuestions.map((q,i)=>{
+        const ans = examAnswers[i];
+        if(ans===q.correct) return '';
+        return `<div class="rule-item danger" style="margin-bottom:8px">
+          <h4>Î${i+1}: ${q.text.substring(0,60)}...</h4>
+          <p>Răspuns corect: <strong style="color:var(--accent3)">${q.opts[q.correct]}</strong></p>
+          ${ans!==undefined?`<p>Răspunsul tău: <strong style="color:var(--danger)">${q.opts[ans]}</strong></p>`:'<p style="color:var(--text3)">Fără răspuns</p>'}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+function restartExam() {
+  document.getElementById('exam-result').classList.remove('show');
+  document.getElementById('exam-start-view').classList.remove('hide');
+}
+
+// ===================== JURNAL =====================
+function buildJurnal() {
+  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  renderJournal(journal);
+}
+
+function addJournalEntry() {
+  const type = document.getElementById('entry-type').value;
+  const text = document.getElementById('entry-text').value.trim();
+  if(!text) return;
+  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  const entry = {id:Date.now(), type, text, date: new Date().toLocaleDateString('ro-RO')+' '+new Date().toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})};
+  journal.unshift(entry);
+  try { localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal)); } catch(e) {}
+  document.getElementById('entry-text').value = '';
+  renderJournal(journal);
+}
+
+function deleteEntry(id) {
+  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  journal = journal.filter(e=>e.id!==id);
+  try { localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal)); } catch(e) {}
+  renderJournal(journal);
+}
+
+function renderJournal(journal) {
+  const typeLabels = {nota:'📌 Notă',studiu:'📚 Studiu',gresit:'❌ Greșit la',invatat:'✅ Înțeles'};
+  const container = document.getElementById('journal-entries');
+  if(!journal.length){
+    container.innerHTML = '<p style="color:var(--text3);font-size:0.88rem">Nu ai adăugat nimic încă. Scrie prima ta notă!</p>';
+    return;
+  }
+  container.innerHTML = journal.map(e=>`
+    <div class="journal-entry ${e.type}">
+      <button class="entry-delete" onclick="deleteEntry(${e.id})">✕</button>
+      <div class="entry-meta">
+        <span class="entry-type-badge badge-${e.type}">${typeLabels[e.type]||e.type}</span>
+        <span>${e.date}</span>
+      </div>
+      <div class="entry-text">${e.text}</div>
+    </div>
+  `).join('');
+}
+
+// ===================== SITUATII RASPUNS =====================
+const sitAnswers = {};
+function answerSit(sid, opt) {
+  if(sitAnswers[sid]!==undefined) return;
+  sitAnswers[sid] = opt;
+  const s = SITUATII.find(x=>x.id===sid);
+  for(let i=0;i<s.opts.length;i++){
+    const el = document.getElementById('sopt-'+sid+'-'+i);
+    el.classList.add('answered');
+    if(i===s.correct) el.classList.add('correct');
+    else if(i===opt) el.classList.add('wrong');
+  }
+  document.getElementById('sit-expl-'+sid).classList.add('show');
+}
+
+// ===================== INIT =====================
+function init() {
+  loadState();
+  buildReguli();
+  buildSigns();
+  buildQuiz();
+  buildSituatii();
+  buildJurnal();
+  updateDashboard();
+}
+
+init();
+</script>
+</body>
+</html>
