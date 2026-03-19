@@ -2,10 +2,9 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#0e0f13">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Permis B — Pregătire Examen</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0e0f13;
@@ -28,7 +27,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -45,7 +44,7 @@ body {
   height: 60px;
 }
 .logo {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.1rem;
   color: var(--accent);
@@ -63,7 +62,7 @@ body {
 .tab {
   padding: 6px 14px;
   border-radius: 8px;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 0.78rem;
   letter-spacing: 0.3px;
@@ -90,7 +89,7 @@ body {
   margin-bottom: 16px;
 }
 .card-title {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   color: var(--accent);
@@ -122,7 +121,7 @@ body {
 .stat-card.blue::before { background: var(--info); }
 
 .stat-num {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2.4rem;
   font-weight: 800;
   line-height: 1;
@@ -153,7 +152,7 @@ body {
 .chapter-icon { font-size: 1.3rem; width: 32px; text-align: center; }
 .chapter-name { flex: 1; font-size: 0.88rem; }
 .chapter-score {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
 }
@@ -175,7 +174,7 @@ body {
 .rule-header:hover { border-color: var(--accent); }
 .rule-header.open { border-color: var(--accent); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 .rule-emoji { font-size: 1.3rem; }
-.rule-title { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; flex: 1; }
+.rule-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; flex: 1; }
 .rule-count { color: var(--text3); font-size: 0.8rem; }
 .rule-chevron { color: var(--text3); transition: transform 0.3s; }
 .rule-header.open .rule-chevron { transform: rotate(180deg); }
@@ -201,7 +200,7 @@ body {
 .rule-item.danger { border-left-color: var(--danger); }
 .rule-item.info { border-left-color: var(--info); }
 .rule-item.green { border-left-color: var(--accent3); }
-.rule-item h4 { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+.rule-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
 .rule-item p { color: var(--text2); font-size: 0.84rem; line-height: 1.6; }
 .rule-item .highlight {
   display: inline-block;
@@ -231,7 +230,7 @@ body {
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
 }
 .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #0e0f13; border-color: var(--accent); }
@@ -253,7 +252,7 @@ body {
 .sign-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .sign-svg { width: 60px; height: 60px; margin: 0 auto 8px; display: block; }
 .sign-name { font-size: 0.74rem; color: var(--text2); line-height: 1.3; }
-.sign-code { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 700; font-size: 0.7rem; color: var(--text3); margin-bottom: 3px; }
+.sign-code { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.7rem; color: var(--text3); margin-bottom: 3px; }
 
 /* Modal semn */
 .modal-overlay {
@@ -279,7 +278,7 @@ body {
   font-size: 1.4rem; cursor: pointer;
 }
 .modal-sign-svg { width: 100px; height: 100px; margin: 0 auto 16px; display: block; }
-.modal h3 { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; }
+.modal h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; }
 .modal p { color: var(--text2); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px; }
 .modal .tag {
   display: inline-block;
@@ -303,7 +302,7 @@ body {
   display: flex; gap: 8px; flex-wrap: wrap; flex: 1;
 }
 .q-num {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 0.85rem;
   color: var(--text2);
   white-space: nowrap;
@@ -318,7 +317,7 @@ body {
 .q-category {
   font-size: 0.72rem;
   font-weight: 600;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -355,7 +354,7 @@ body {
 .q-option.correct { border-color: var(--accent3); background: rgba(62,207,142,0.1); }
 .q-option.wrong { border-color: var(--danger); background: rgba(232,64,64,0.1); }
 .q-option-letter {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   color: var(--text3);
@@ -386,7 +385,7 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   border: none;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -407,7 +406,7 @@ body {
   margin-bottom: 16px;
 }
 .sit-title {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 14px;
@@ -450,7 +449,7 @@ body {
   padding: 60px 20px;
 }
 .exam-start h2 {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 2rem;
   margin-bottom: 12px;
@@ -475,14 +474,14 @@ body {
 .exam-active { display: none; }
 .exam-active.show { display: block; }
 .exam-start-view { display: block; }
-.exam-start-view.hide { display: none !important; }
+.exam-start-view.hide { display: none; }
 
 .exam-top {
   display: flex; align-items: center; gap: 16px;
   margin-bottom: 20px; flex-wrap: wrap;
 }
 .exam-timer {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.4rem;
   color: var(--accent);
@@ -495,7 +494,7 @@ body {
 .exam-timer.urgent { color: var(--danger); border-color: var(--danger); animation: pulse 1s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 .exam-progress-text {
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 0.85rem;
   color: var(--text2);
 }
@@ -511,7 +510,7 @@ body {
   cursor: pointer;
   font-size: 0.65rem;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   color: var(--text3);
 }
@@ -531,13 +530,13 @@ body {
   border-radius: 50%;
   margin: 0 auto 20px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 2rem;
 }
 .result-circle.pass { background: rgba(62,207,142,0.2); border: 4px solid var(--accent3); color: var(--accent3); }
 .result-circle.fail { background: rgba(232,64,64,0.2); border: 4px solid var(--danger); color: var(--danger); }
-.result-title { font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 8px; }
+.result-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 8px; }
 .result-sub { color: var(--text2); font-size: 0.9rem; margin-bottom: 24px; }
 
 /* ===== JURNAL ===== */
@@ -549,7 +548,7 @@ body {
   border-radius: 8px;
   padding: 12px;
   color: var(--text);
-  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   resize: vertical;
   min-height: 80px;
@@ -570,7 +569,7 @@ body {
 .entry-meta { font-size: 0.75rem; color: var(--text3); margin-bottom: 6px; display: flex; gap: 8px; }
 .entry-type-badge {
   padding: 1px 8px; border-radius: 10px;
-  font-size: 0.72rem; font-weight: 600; font-family: 'Segoe UI', 'Arial Black', system-ui, sans-serif;
+  font-size: 0.72rem; font-weight: 600; font-family: 'Syne', sans-serif;
 }
 .badge-studiu { background: rgba(74,158,255,0.2); color: var(--info); }
 .badge-gresit { background: rgba(232,64,64,0.2); color: var(--danger); }
@@ -585,7 +584,7 @@ select {
   border-radius: 8px;
   color: var(--text);
   padding: 8px 12px;
-  font-family: 'Segoe UI', Arial, system-ui, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   cursor: pointer;
 }
@@ -983,15 +982,11 @@ let chapterStats = {prioritate:[0,0],viteza:[0,0],depasire:[0,0],alcool:[0,0],se
 const LS_KEY = 'permis_b_data';
 
 function saveState() {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify({quizAnswers,chapterStats}));
-  } catch(e) { console.warn('localStorage indisponibil'); }
+  localStorage.setItem(LS_KEY, JSON.stringify({quizAnswers,chapterStats,journal:getJournal(),examHistory:getExamHistory()}));
 }
 function loadState() {
   try {
-    const raw = localStorage.getItem(LS_KEY);
-    if(!raw) return {};
-    const d = JSON.parse(raw);
+    const d = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
     if(d.quizAnswers) quizAnswers = d.quizAnswers;
     if(d.chapterStats) chapterStats = d.chapterStats;
     return d;
@@ -1000,10 +995,10 @@ function loadState() {
 function getJournal() {
   const entries = document.querySelectorAll('#journal-entries .journal-entry');
   // Just return what's stored
-  try { return JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) { return []; }
+  return JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]');
 }
 function getExamHistory() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY+'_exams')||'[]'); } catch(e) { return []; }
+  return JSON.parse(localStorage.getItem(LS_KEY+'_exams')||'[]');
 }
 
 // ===================== TABS =====================
@@ -1065,26 +1060,31 @@ function updateDashboard() {
 
 // ===================== REGULI =====================
 function buildReguli() {
-  const container = document.getElementById('reguli-list');
-  container.innerHTML = REGULI.map((sec,si)=>`
-    <div class="rule-section">
-      <div class="rule-header" onclick="toggleRule(${si})" id="rh-${si}">
-        <span class="rule-emoji">${sec.emoji}</span>
-        <span class="rule-title">${sec.title}</span>
-        <span class="rule-count">${sec.count} reguli</span>
-        <span class="rule-chevron">▼</span>
-      </div>
-      <div class="rule-body" id="rb-${si}">
-        ${sec.rules.map(r=>`
-          <div class="rule-item ${r.type}">
-            <h4>${r.title}</h4>
-            <p>${r.text}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
+  var container = document.getElementById('reguli-list');
+  container.innerHTML = '';
+  REGULI.forEach(function(sec, si) {
+    var section = document.createElement('div');
+    section.className = 'rule-section';
+
+    var header = document.createElement('div');
+    header.className = 'rule-header';
+    header.id = 'rh-' + si;
+    header.innerHTML = '<span class="rule-emoji">' + sec.emoji + '</span><span class="rule-title">' + sec.title + '</span><span class="rule-count">' + sec.count + ' reguli</span><span class="rule-chevron">&#9660;</span>';
+    (function(idx){ header.addEventListener('click', function(){ toggleRule(idx); }); })(si);
+
+    var body = document.createElement('div');
+    body.className = 'rule-body';
+    body.id = 'rb-' + si;
+    body.innerHTML = sec.rules.map(function(r){
+      return '<div class="rule-item ' + r.type + '"><h4>' + r.title + '</h4><p>' + r.text + '</p></div>';
+    }).join('');
+
+    section.appendChild(header);
+    section.appendChild(body);
+    container.appendChild(section);
+  });
 }
+
 function toggleRule(i) {
   const h = document.getElementById('rh-'+i);
   const b = document.getElementById('rb-'+i);
@@ -1100,7 +1100,7 @@ const svgDefs = {
   triangle_ped: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><circle cx="30" cy="22" r="4" fill="#222"/><line x1="30" y1="26" x2="30" y2="38" stroke="#222" stroke-width="3"/><line x1="22" y1="32" x2="38" y2="32" stroke="#222" stroke-width="3"/><line x1="30" y1="38" x2="24" y2="46" stroke="#222" stroke-width="3"/><line x1="30" y1="38" x2="36" y2="46" stroke="#222" stroke-width="3"/></svg>`,
   triangle_child: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><circle cx="26" cy="23" r="3.5" fill="#222"/><circle cx="36" cy="24" r="3" fill="#222"/><line x1="26" y1="26.5" x2="24" y2="36" stroke="#222" stroke-width="2.5"/><line x1="24" y1="36" x2="20" y2="43" stroke="#222" stroke-width="2.5"/><line x1="24" y1="36" x2="28" y2="43" stroke="#222" stroke-width="2.5"/><line x1="36" y1="27" x2="36" y2="43" stroke="#222" stroke-width="2.5"/></svg>`,
   triangle_cross: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><line x1="30" y1="18" x2="30" y2="46" stroke="#222" stroke-width="3"/><line x1="16" y1="34" x2="44" y2="34" stroke="#222" stroke-width="3"/></svg>`,
-  triangle_animal: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><ellipse cx="30" cy="32" rx="12" ry="8" fill="#555"/><circle cx="22" cy="25" r="4" fill="#555"/><circle cx="38" cy="25" r="4" fill="#555"/><rect x="24" y="40" width="3" height="8" fill="#555"/><rect x="33" y="40" width="3" height="8" fill="#555"/></svg>`,
+  triangle_animal: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><text x="50%" y="42" text-anchor="middle" font-size="22">🐄</text></svg>`,
   triangle_slippery: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,52 4,52" fill="white" stroke="#e63946" stroke-width="4"/><path d="M22 44 Q30 28 38 34 Q46 40 38 44" fill="none" stroke="#222" stroke-width="2.5"/><rect x="22" y="44" width="16" height="4" rx="2" fill="#222"/></svg>`,
   diamond_priority: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,4 56,30 30,56 4,30" fill="#f5c518" stroke="white" stroke-width="4"/></svg>`,
   yield: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><polygon points="30,52 4,8 56,8" fill="white" stroke="#e63946" stroke-width="4"/><polygon points="30,44 12,16 48,16" fill="white" stroke="#e63946" stroke-width="3"/></svg>`,
@@ -1115,10 +1115,10 @@ const svgDefs = {
   mandatory_ahead: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><path d="M22 38 L30 14 L38 38 L30 34 Z" fill="white"/></svg>`,
   mandatory_right: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><path d="M14 38 L30 30 L22 14 Q38 14 44 30 Q38 46 22 46" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/><polygon points="38 38 52 30 38 22" fill="white"/></svg>`,
   roundabout: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><circle cx="30" cy="30" r="12" fill="none" stroke="white" stroke-width="4" stroke-dasharray="4 2"/><path d="M30 18 Q42 18 42 30" stroke="white" stroke-width="3" fill="none"/><polygon points="42 26 46 32 40 34" fill="white"/></svg>`,
-  bike_lane: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><circle cx="20" cy="36" r="9" fill="none" stroke="white" stroke-width="3"/><circle cx="40" cy="36" r="9" fill="none" stroke="white" stroke-width="3"/><line x1="20" y1="36" x2="30" y2="22" stroke="white" stroke-width="2.5"/><line x1="30" y1="22" x2="40" y2="36" stroke="white" stroke-width="2.5"/><line x1="30" y1="22" x2="30" y2="16" stroke="white" stroke-width="2.5"/><circle cx="30" cy="15" r="3" fill="white"/></svg>`,
+  bike_lane: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="26" fill="#4a9eff"/><text x="50%" y="40" text-anchor="middle" font-size="28">🚴</text></svg>`,
   motorway: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="52" height="44" rx="4" fill="#4a9eff"/><text x="50%" y="28" text-anchor="middle" font-size="9" fill="white" font-weight="bold">AUTOSTRADĂ</text><rect x="14" y="30" width="14" height="16" rx="2" fill="white"/><rect x="32" y="30" width="14" height="16" rx="2" fill="white"/><rect x="28" y="32" width="4" height="12" rx="1" fill="#4a9eff"/></svg>`,
   parking: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><text x="50%" y="42" text-anchor="middle" font-size="38" font-weight="900" fill="white" font-family="Arial">P</text></svg>`,
-  crosswalk_info: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><circle cx="30" cy="18" r="6" fill="white"/><line x1="30" y1="24" x2="30" y2="40" stroke="white" stroke-width="4"/><line x1="18" y1="30" x2="42" y2="30" stroke="white" stroke-width="3"/><line x1="30" y1="40" x2="22" y2="52" stroke="white" stroke-width="3"/><line x1="30" y1="40" x2="38" y2="52" stroke="white" stroke-width="3"/></svg>`,
+  crosswalk_info: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><text x="50%" y="40" text-anchor="middle" font-size="32">🚶</text></svg>`,
   hospital: `<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="52" height="52" rx="6" fill="#4a9eff"/><text x="50%" y="42" text-anchor="middle" font-size="30" fill="white" font-weight="bold" font-family="Arial">H</text></svg>`,
 };
 
@@ -1131,13 +1131,15 @@ function buildSigns() {
 
 function renderSigns(signs) {
   const grid = document.getElementById('signs-grid');
-  grid.innerHTML = signs.map(s=>`
-    <div class="sign-card" onclick="showSign('${s.id}')">
-      <div class="sign-svg">${svgDefs[s.svg]||'<svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#333" rx="4"/><text x="30" y="38" text-anchor="middle" font-size="28" fill="white">?</text></svg>'}</div>
-      <div class="sign-code">${s.id}</div>
-      <div class="sign-name">${s.name}</div>
-    </div>
-  `).join('');
+  grid.innerHTML = '';
+  signs.forEach(function(s) {
+    const svgContent = svgDefs[s.svg] || '<svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#333" rx="4"/><text x="30" y="38" text-anchor="middle" font-size="28" fill="white">?</text></svg>';
+    const div = document.createElement('div');
+    div.className = 'sign-card';
+    div.innerHTML = '<div class="sign-svg">' + svgContent + '</div><div class="sign-code">' + s.id + '</div><div class="sign-name">' + s.name + '</div>';
+    div.addEventListener('click', function() { showSign(s.id); });
+    grid.appendChild(div);
+  });
 }
 
 function filterSigns(cat, btn) {
@@ -1181,25 +1183,52 @@ function renderQuestion() {
   if(!q) return;
   const ans = quizAnswers[q.id];
   const letters = ['A','B','C','D'];
-  document.getElementById('quiz-container').innerHTML = `
-    <div class="question-card">
-      <div class="q-category">${getCatLabel(q.cat)}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="q-options" id="opts-${q.id}">
-        ${q.opts.map((opt,i)=>`
-          <div class="q-option ${ans!==undefined?(i===q.correct?'correct answered':(i===ans?'wrong answered':'answered')):''}
-               " onclick="answerQuestion(${q.id},${i})">
-            <span class="q-option-letter">${letters[i]}</span>
-            <span>${opt}</span>
-          </div>
-        `).join('')}
-      </div>
-      <div class="q-explanation ${ans!==undefined?'show':''}">
-        <strong>${ans===q.correct?'✅ Corect!':'❌ Greșit!'}</strong> ${q.expl}
-      </div>
-    </div>
-  `;
-  document.getElementById('quiz-counter').textContent = `Întrebarea ${currentQuiz+1}/${quizQuestions.length}`;
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+
+  const card = document.createElement('div');
+  card.className = 'question-card';
+
+  const cat = document.createElement('div');
+  cat.className = 'q-category';
+  cat.textContent = getCatLabel(q.cat);
+  card.appendChild(cat);
+
+  const txt = document.createElement('div');
+  txt.className = 'q-text';
+  txt.textContent = q.text;
+  card.appendChild(txt);
+
+  const optsDiv = document.createElement('div');
+  optsDiv.className = 'q-options';
+  optsDiv.id = 'opts-' + q.id;
+
+  q.opts.forEach(function(opt, i) {
+    const optDiv = document.createElement('div');
+    let cls = 'q-option';
+    if (ans !== undefined) {
+      cls += ' answered';
+      if (i === q.correct) cls += ' correct';
+      else if (i === ans) cls += ' wrong';
+    }
+    optDiv.className = cls;
+    optDiv.innerHTML = '<span class="q-option-letter">' + letters[i] + '</span><span>' + opt + '</span>';
+    if (ans === undefined) {
+      optDiv.addEventListener('click', function() { answerQuestion(q.id, i); });
+    }
+    optsDiv.appendChild(optDiv);
+  });
+  card.appendChild(optsDiv);
+
+  const expl = document.createElement('div');
+  expl.className = 'q-explanation' + (ans !== undefined ? ' show' : '');
+  if (ans !== undefined) {
+    expl.innerHTML = '<strong>' + (ans === q.correct ? '✅ Corect!' : '❌ Greșit!') + '</strong> ' + q.expl;
+  }
+  card.appendChild(expl);
+  container.appendChild(card);
+
+  document.getElementById('quiz-counter').textContent = 'Întrebarea ' + (currentQuiz+1) + '/' + quizQuestions.length;
 }
 
 function getCatLabel(c) {
@@ -1236,132 +1265,89 @@ function filterQuiz(cat, btn) {
 
 // ===================== SITUATII =====================
 function buildSituatii() {
-  const sitSVGs = {
-    intersect_4way_AB: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" fill="#1e2028"/>
-      <rect x="88" y="0" width="24" height="200" fill="#2e3140"/>
-      <rect x="0" y="88" width="200" height="24" fill="#2e3140"/>
-      <rect x="90" y="2" width="20" height="86" fill="#3a3f52"/>
-      <rect x="90" y="112" width="20" height="86" fill="#3a3f52"/>
-      <rect x="2" y="90" width="86" height="20" fill="#3a3f52"/>
-      <rect x="112" y="90" width="86" height="20" fill="#3a3f52"/>
-      <line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <line x1="114" y1="100" x2="198" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <!-- A: nord spre sud -->
-      <g transform="translate(100,40)">
-        <polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/>
-        <text y="-18" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a9eff" font-family="Arial">A</text>
-      </g>
-      <!-- B: vest spre est -->
-      <g transform="translate(40,100)">
-        <polygon points="-14,0 6,-10 6,10" fill="#e63946" stroke="#fff" stroke-width="1.5" transform="rotate(90)"/>
-        <text x="-20" y="5" text-anchor="middle" font-size="13" font-weight="bold" fill="#e63946" font-family="Arial">B</text>
-      </g>
-      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">B vine din DREAPTA față de A</text>
-    </svg>`,
-    left_turn: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" fill="#1e2028"/>
-      <rect x="88" y="0" width="24" height="200" fill="#2e3140"/>
-      <rect x="0" y="88" width="110" height="24" fill="#2e3140"/>
-      <rect x="90" y="2" width="20" height="86" fill="#3a3f52"/>
-      <rect x="90" y="114" width="20" height="86" fill="#3a3f52"/>
-      <rect x="2" y="90" width="86" height="20" fill="#3a3f52"/>
-      <line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/>
-      <!-- Tu: vine de jos, vrea sa vireze stanga -->
-      <g transform="translate(100,160)">
-        <polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/>
-        <text x="14" y="0" font-size="10" fill="#4a9eff" font-family="Arial">TU</text>
-      </g>
-      <path d="M100 145 Q60 100 30 100" stroke="#4a9eff" stroke-width="2.5" fill="none" stroke-dasharray="5 3"/>
-      <polygon points="30 93 22 100 30 107" fill="#4a9eff"/>
-      <!-- Vehicul din fata, vine din sus -->
-      <g transform="translate(100,50)">
-        <polygon points="0,14 -10,-6 10,-6" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
-        <text x="14" y="5" font-size="9" fill="#e63946" font-family="Arial">sens opus</text>
-      </g>
-      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Acorzi prioritate vehiculului din sens opus</text>
-    </svg>`,
-    roundabout_sit: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" fill="#1e2028"/>
-      <circle cx="100" cy="100" r="50" fill="#2e3140" stroke="#3a3f52" stroke-width="2"/>
-      <circle cx="100" cy="100" r="22" fill="#1e2028"/>
-      <!-- intrari/iesiri -->
-      <rect x="88" y="0" width="24" height="50" fill="#2e3140"/><rect x="90" y="2" width="20" height="48" fill="#3a3f52"/>
-      <rect x="88" y="150" width="24" height="50" fill="#2e3140"/><rect x="90" y="150" width="20" height="48" fill="#3a3f52"/>
-      <rect x="150" y="88" width="50" height="24" fill="#2e3140"/><rect x="152" y="90" width="48" height="20" fill="#3a3f52"/>
-      <rect x="0" y="88" width="50" height="24" fill="#2e3140"/><rect x="2" y="90" width="48" height="20" fill="#3a3f52"/>
-      <!-- Masina IN sens giratoriu -->
-      <g transform="translate(130,70)rotate(-30)">
-        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/>
-        <text x="22" y="4" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(30)">TU</text>
-      </g>
-      <!-- Masina care vrea sa intre -->
-      <g transform="translate(165,95)">
-        <polygon points="14,0 -6,-8 -6,8" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
-        <text x="0" y="-12" text-anchor="middle" font-size="9" fill="#e63946" font-family="Arial">intră</text>
-      </g>
-      <!-- Sageata sens giratoriu -->
-      <path d="M100 50 A50 50 0 0 1 150 100" stroke="#f5c518" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
-      <polygon points="148 88 156 100 144 102" fill="#f5c518"/>
-      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Tu ești în sens giratoriu = ai prioritate</text>
-    </svg>`,
-    overtake_curve: `<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" fill="#1e2028"/>
-      <path d="M60 200 Q60 80 140 0" stroke="#2e3140" stroke-width="30" fill="none"/>
-      <path d="M60 200 Q60 80 140 0" stroke="#3a3f52" stroke-width="26" fill="none"/>
-      <path d="M60 200 Q60 80 140 0" stroke="#f5c518" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
-      <!-- Tu -->
-      <g transform="translate(65,160)rotate(-10)">
-        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/>
-        <text x="-20" y="18" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(10)">TU</text>
-      </g>
-      <!-- Vehicul de depasit -->
-      <g transform="translate(70,130)rotate(-20)">
-        <rect x="-9" y="-6" width="18" height="12" rx="3" fill="#888"/>
-      </g>
-      <!-- Curba marcata -->
-      <text x="130" y="60" font-size="9" fill="#e63946" font-family="Arial">CURBA</text>
-      <text x="125" y="73" font-size="9" fill="#e63946" font-family="Arial">150m</text>
-      <text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Vizibilitate insuficientă = depășire interzisă!</text>
-    </svg>`
+  var sitSVGs = {
+    intersect_4way_AB: '<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1e2028"/><rect x="88" y="0" width="24" height="200" fill="#2e3140"/><rect x="0" y="88" width="200" height="24" fill="#2e3140"/><rect x="90" y="2" width="20" height="86" fill="#3a3f52"/><rect x="90" y="112" width="20" height="86" fill="#3a3f52"/><rect x="2" y="90" width="86" height="20" fill="#3a3f52"/><rect x="112" y="90" width="86" height="20" fill="#3a3f52"/><line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><line x1="114" y1="100" x2="198" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><g transform="translate(100,40)"><polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/><text y="-18" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a9eff" font-family="Arial">A</text></g><g transform="translate(40,100)"><polygon points="-14,0 6,-10 6,10" fill="#e63946" stroke="#fff" stroke-width="1.5" transform="rotate(90)"/><text x="-20" y="5" text-anchor="middle" font-size="13" font-weight="bold" fill="#e63946" font-family="Arial">B</text></g><text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">B vine din DREAPTA fata de A</text></svg>',
+    left_turn: '<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1e2028"/><rect x="88" y="0" width="24" height="200" fill="#2e3140"/><rect x="0" y="88" width="110" height="24" fill="#2e3140"/><rect x="90" y="2" width="20" height="86" fill="#3a3f52"/><rect x="90" y="114" width="20" height="86" fill="#3a3f52"/><rect x="2" y="90" width="86" height="20" fill="#3a3f52"/><line x1="100" y1="2" x2="100" y2="86" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><line x1="100" y1="114" x2="100" y2="198" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><line x1="2" y1="100" x2="86" y2="100" stroke="#f5c518" stroke-width="1.5" stroke-dasharray="6 4"/><g transform="translate(100,160)"><polygon points="0,-14 -10,6 10,6" fill="#4a9eff" stroke="#fff" stroke-width="1.5"/><text x="14" y="0" font-size="10" fill="#4a9eff" font-family="Arial">TU</text></g><path d="M100 145 Q60 100 30 100" stroke="#4a9eff" stroke-width="2.5" fill="none" stroke-dasharray="5 3"/><polygon points="30 93 22 100 30 107" fill="#4a9eff"/><g transform="translate(100,50)"><polygon points="0,14 -10,-6 10,-6" fill="#e63946" stroke="#fff" stroke-width="1.5"/><text x="14" y="5" font-size="9" fill="#e63946" font-family="Arial">sens opus</text></g><text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Acorzi prioritate vehiculului din sens opus</text></svg>',
+    roundabout_sit: '<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1e2028"/><circle cx="100" cy="100" r="50" fill="#2e3140" stroke="#3a3f52" stroke-width="2"/><circle cx="100" cy="100" r="22" fill="#1e2028"/><rect x="88" y="0" width="24" height="50" fill="#2e3140"/><rect x="90" y="2" width="20" height="48" fill="#3a3f52"/><rect x="88" y="150" width="24" height="50" fill="#2e3140"/><rect x="90" y="150" width="20" height="48" fill="#3a3f52"/><rect x="150" y="88" width="50" height="24" fill="#2e3140"/><rect x="152" y="90" width="48" height="20" fill="#3a3f52"/><rect x="0" y="88" width="50" height="24" fill="#2e3140"/><rect x="2" y="90" width="48" height="20" fill="#3a3f52"/><g transform="translate(130,70)rotate(-30)"><rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/><text x="22" y="4" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(30)">TU</text></g><g transform="translate(165,95)"><polygon points="14,0 -6,-8 -6,8" fill="#e63946" stroke="#fff" stroke-width="1.5"/><text x="0" y="-12" text-anchor="middle" font-size="9" fill="#e63946" font-family="Arial">intra</text></g><path d="M100 50 A50 50 0 0 1 150 100" stroke="#f5c518" stroke-width="2" fill="none" stroke-dasharray="5 3"/><polygon points="148 88 156 100 144 102" fill="#f5c518"/><text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Tu esti in sens giratoriu = ai prioritate</text></svg>',
+    overtake_curve: '<svg class="intersection-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1e2028"/><path d="M60 200 Q60 80 140 0" stroke="#2e3140" stroke-width="30" fill="none"/><path d="M60 200 Q60 80 140 0" stroke="#3a3f52" stroke-width="26" fill="none"/><path d="M60 200 Q60 80 140 0" stroke="#f5c518" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/><g transform="translate(65,160)rotate(-10)"><rect x="-9" y="-6" width="18" height="12" rx="3" fill="#4a9eff"/><text x="-20" y="18" font-size="10" fill="#4a9eff" font-family="Arial" transform="rotate(10)">TU</text></g><g transform="translate(70,130)rotate(-20)"><rect x="-9" y="-6" width="18" height="12" rx="3" fill="#888"/></g><text x="130" y="60" font-size="9" fill="#e63946" font-family="Arial">CURBA</text><text x="125" y="73" font-size="9" fill="#e63946" font-family="Arial">150m</text><text x="100" y="195" text-anchor="middle" font-size="9" fill="#5a5e75">Vizibilitate insuficienta = depasire interzisa!</text></svg>'
   };
 
-  const container = document.getElementById('situations-container');
-  container.innerHTML = SITUATII.map(s=>`
-    <div class="situation-card">
-      <div class="sit-title">${s.title}</div>
-      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:14px">${s.desc}</p>
-      ${sitSVGs[s.svgType]||''}
-      <div class="sit-question">${s.question}</div>
-      <div class="sit-options">
-        ${s.opts.map((opt,i)=>`
-          <div class="sit-opt" id="sopt-${s.id}-${i}" onclick="answerSit(${s.id},${i})">${opt}</div>
-        `).join('')}
-      </div>
-      <div class="sit-explanation" id="sit-expl-${s.id}">
-        <strong>Explicație:</strong> ${s.expl}
-      </div>
-    </div>
-  `).join('');
+  var sitAnswers = {};
+  var container = document.getElementById('situations-container');
+  container.innerHTML = '';
 
-  // answerSit este definit global
+  SITUATII.forEach(function(s) {
+    var card = document.createElement('div');
+    card.className = 'situation-card';
+
+    var titleEl = document.createElement('div');
+    titleEl.className = 'sit-title';
+    titleEl.textContent = s.title;
+    card.appendChild(titleEl);
+
+    var descEl = document.createElement('p');
+    descEl.style.cssText = 'font-size:0.85rem;color:var(--text2);margin-bottom:14px';
+    descEl.textContent = s.desc;
+    card.appendChild(descEl);
+
+    var svgDiv = document.createElement('div');
+    svgDiv.innerHTML = sitSVGs[s.svgType] || '';
+    card.appendChild(svgDiv);
+
+    var qEl = document.createElement('div');
+    qEl.className = 'sit-question';
+    qEl.textContent = s.question;
+    card.appendChild(qEl);
+
+    var optsDiv = document.createElement('div');
+    optsDiv.className = 'sit-options';
+
+    var explDiv = document.createElement('div');
+    explDiv.className = 'sit-explanation';
+    explDiv.id = 'sit-expl-' + s.id;
+    explDiv.innerHTML = '<strong>Explicatie:</strong> ' + s.expl;
+
+    s.opts.forEach(function(opt, i) {
+      var optEl = document.createElement('div');
+      optEl.className = 'sit-opt';
+      optEl.id = 'sopt-' + s.id + '-' + i;
+      optEl.textContent = opt;
+      optEl.addEventListener('click', function() {
+        if(sitAnswers[s.id] !== undefined) return;
+        sitAnswers[s.id] = i;
+        s.opts.forEach(function(_, j) {
+          var el = document.getElementById('sopt-' + s.id + '-' + j);
+          if(!el) return;
+          el.classList.add('answered');
+          if(j === s.correct) el.classList.add('correct');
+          else if(j === i) el.classList.add('wrong');
+        });
+        explDiv.classList.add('show');
+      });
+      optsDiv.appendChild(optEl);
+    });
+
+    card.appendChild(optsDiv);
+    card.appendChild(explDiv);
+    container.appendChild(card);
+  });
 }
+
 
 // ===================== EXAMEN =====================
 function startExam() {
-  examQuestions = [...QUESTIONS].sort(()=>Math.random()-0.5).slice(0,26);
+  examQuestions = [...QUESTIONS].sort(function(){return Math.random()-0.5;}).slice(0,26);
   examAnswers = {};
   examCurrent = 0;
   examSeconds = 1800;
   examFinished = false;
 
-  document.getElementById('exam-start-view').classList.add('hide');
-  document.getElementById('exam-active').classList.add('show');
-  document.getElementById('exam-result').classList.remove('show');
+  var sv = document.getElementById('exam-start-view');
+  var ea = document.getElementById('exam-active');
+  var er = document.getElementById('exam-result');
+  if(sv) { sv.style.display = 'none'; }
+  if(ea) { ea.style.display = 'block'; }
+  if(er) { er.style.display = 'none'; }
 
   buildExamDots();
   renderExamQuestion();
@@ -1369,9 +1355,16 @@ function startExam() {
 }
 
 function buildExamDots() {
-  document.getElementById('exam-dots').innerHTML = examQuestions.map((q,i)=>`
-    <div class="exam-dot" id="edot-${i}" onclick="goExamQ(${i})">${i+1}</div>
-  `).join('');
+  var container = document.getElementById('exam-dots');
+  container.innerHTML = '';
+  examQuestions.forEach(function(q, i) {
+    var dot = document.createElement('div');
+    dot.className = 'exam-dot';
+    dot.id = 'edot-' + i;
+    dot.textContent = i + 1;
+    (function(idx){ dot.addEventListener('click', function(){ goExamQ(idx); }); })(i);
+    container.appendChild(dot);
+  });
   updateExamDot();
 }
 
@@ -1390,21 +1383,35 @@ function renderExamQuestion() {
   if(!q) return;
   const letters = ['A','B','C','D'];
   const ans = examAnswers[examCurrent];
-  document.getElementById('exam-question-container').innerHTML = `
-    <div class="question-card">
-      <div class="q-category">${getCatLabel(q.cat)} &nbsp;·&nbsp; Întrebarea ${examCurrent+1} din ${examQuestions.length}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="q-options">
-        ${q.opts.map((opt,i)=>`
-          <div class="q-option ${ans===i?'correct':''}" onclick="answerExam(${i})">
-            <span class="q-option-letter">${letters[i]}</span>
-            <span>${opt}</span>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
-  document.getElementById('exam-prog-text').textContent = `Întrebarea ${examCurrent+1} din ${examQuestions.length} · Răspunse: ${Object.keys(examAnswers).length}`;
+  const container = document.getElementById('exam-question-container');
+  container.innerHTML = '';
+
+  const card = document.createElement('div');
+  card.className = 'question-card';
+
+  const cat = document.createElement('div');
+  cat.className = 'q-category';
+  cat.textContent = getCatLabel(q.cat) + ' \u00b7 \u00centrebarea ' + (examCurrent+1) + ' din ' + examQuestions.length;
+  card.appendChild(cat);
+
+  const txt = document.createElement('div');
+  txt.className = 'q-text';
+  txt.textContent = q.text;
+  card.appendChild(txt);
+
+  const optsDiv = document.createElement('div');
+  optsDiv.className = 'q-options';
+  q.opts.forEach(function(opt, i) {
+    const optDiv = document.createElement('div');
+    optDiv.className = 'q-option' + (ans === i ? ' correct' : '');
+    optDiv.innerHTML = '<span class="q-option-letter">' + letters[i] + '</span><span>' + opt + '</span>';
+    optDiv.addEventListener('click', function() { answerExam(i); });
+    optsDiv.appendChild(optDiv);
+  });
+  card.appendChild(optsDiv);
+  container.appendChild(card);
+
+  document.getElementById('exam-prog-text').textContent = '\u00centrebarea ' + (examCurrent+1) + ' din ' + examQuestions.length + ' \u00b7 R\u0103spunse: ' + Object.keys(examAnswers).length;
   updateExamDot();
 }
 
@@ -1453,11 +1460,12 @@ function finishExam() {
   // Salvare in istoric
   const hist = getExamHistory();
   hist.push({date: new Date().toLocaleDateString('ro-RO'), correct, wrong, pass});
-  try { localStorage.setItem(LS_KEY+'_exams', JSON.stringify(hist)); } catch(e) {}
+  localStorage.setItem(LS_KEY+'_exams', JSON.stringify(hist));
 
-  document.getElementById('exam-active').classList.remove('show');
-  const res = document.getElementById('exam-result');
-  res.classList.add('show');
+  var eaEl = document.getElementById('exam-active');
+  if(eaEl) eaEl.style.display = 'none';
+  var res = document.getElementById('exam-result');
+  if(res) res.style.display = 'block';
   const circ = document.getElementById('result-circle');
   circ.className = 'result-circle ' + (pass?'pass':'fail');
   circ.textContent = correct+'/26';
@@ -1465,30 +1473,37 @@ function finishExam() {
   document.getElementById('result-sub').textContent = pass
     ? `Felicitări! Ai ${wrong} greșeli (maxim admis: 4). Poți susține examenul real!`
     : `Ai ${wrong} greșeli (maxim admis: 4). Mai exersează și încearcă din nou!`;
-  document.getElementById('result-details').innerHTML = `
-    <div class="card">
-      <div class="card-title">Greșeli detaliate</div>
-      ${examQuestions.map((q,i)=>{
-        const ans = examAnswers[i];
-        if(ans===q.correct) return '';
-        return `<div class="rule-item danger" style="margin-bottom:8px">
-          <h4>Î${i+1}: ${q.text.substring(0,60)}...</h4>
-          <p>Răspuns corect: <strong style="color:var(--accent3)">${q.opts[q.correct]}</strong></p>
-          ${ans!==undefined?`<p>Răspunsul tău: <strong style="color:var(--danger)">${q.opts[ans]}</strong></p>`:'<p style="color:var(--text3)">Fără răspuns</p>'}
-        </div>`;
-      }).join('')}
-    </div>
-  `;
+  let detailsHtml = '<div class="card"><div class="card-title">Greșeli detaliate</div>';
+  examQuestions.forEach(function(q, i) {
+    const ans = examAnswers[i];
+    if (ans === q.correct) return;
+    detailsHtml += '<div class="rule-item danger" style="margin-bottom:8px">';
+    detailsHtml += '<h4>Î' + (i+1) + ': ' + q.text.substring(0,60) + '...</h4>';
+    detailsHtml += '<p>Răspuns corect: <strong style="color:var(--accent3)">' + q.opts[q.correct] + '</strong></p>';
+    if (ans !== undefined) {
+      detailsHtml += '<p>Răspunsul tău: <strong style="color:var(--danger)">' + q.opts[ans] + '</strong></p>';
+    } else {
+      detailsHtml += '<p style="color:var(--text3)">Fără răspuns</p>';
+    }
+    detailsHtml += '</div>';
+  });
+  detailsHtml += '</div>';
+  document.getElementById('result-details').innerHTML = detailsHtml;
 }
 
 function restartExam() {
-  document.getElementById('exam-result').classList.remove('show');
-  document.getElementById('exam-start-view').classList.remove('hide');
+  if(examTimer) clearInterval(examTimer);
+  var er = document.getElementById('exam-result');
+  var sv = document.getElementById('exam-start-view');
+  var ea = document.getElementById('exam-active');
+  if(er) er.style.display = 'none';
+  if(sv) sv.style.display = 'block';
+  if(ea) ea.style.display = 'none';
 }
 
 // ===================== JURNAL =====================
 function buildJurnal() {
-  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  const journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]');
   renderJournal(journal);
 }
 
@@ -1496,18 +1511,18 @@ function addJournalEntry() {
   const type = document.getElementById('entry-type').value;
   const text = document.getElementById('entry-text').value.trim();
   if(!text) return;
-  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  const journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]');
   const entry = {id:Date.now(), type, text, date: new Date().toLocaleDateString('ro-RO')+' '+new Date().toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})};
   journal.unshift(entry);
-  try { localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal)); } catch(e) {}
+  localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal));
   document.getElementById('entry-text').value = '';
   renderJournal(journal);
 }
 
 function deleteEntry(id) {
-  let journal = []; try { journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]'); } catch(e) {}
+  let journal = JSON.parse(localStorage.getItem(LS_KEY+'_journal')||'[]');
   journal = journal.filter(e=>e.id!==id);
-  try { localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal)); } catch(e) {}
+  localStorage.setItem(LS_KEY+'_journal', JSON.stringify(journal));
   renderJournal(journal);
 }
 
@@ -1528,21 +1543,6 @@ function renderJournal(journal) {
       <div class="entry-text">${e.text}</div>
     </div>
   `).join('');
-}
-
-// ===================== SITUATII RASPUNS =====================
-const sitAnswers = {};
-function answerSit(sid, opt) {
-  if(sitAnswers[sid]!==undefined) return;
-  sitAnswers[sid] = opt;
-  const s = SITUATII.find(x=>x.id===sid);
-  for(let i=0;i<s.opts.length;i++){
-    const el = document.getElementById('sopt-'+sid+'-'+i);
-    el.classList.add('answered');
-    if(i===s.correct) el.classList.add('correct');
-    else if(i===opt) el.classList.add('wrong');
-  }
-  document.getElementById('sit-expl-'+sid).classList.add('show');
 }
 
 // ===================== INIT =====================
